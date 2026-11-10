@@ -20,7 +20,7 @@
 
   /* Шапка, кнопка «наверх», активный пункт меню */
   const bar=document.getElementById('top-bar'), totop=document.getElementById('totop');
-  const onScroll=()=>{const y=scrollY;bar.classList.toggle('scrolled',y>10);totop.classList.toggle('show',y>700)};
+  const onScroll=()=>{const y=scrollY;bar.classList.toggle('scrolled',y>(bar.classList.contains('home')?innerHeight*.6:10));totop.classList.toggle('show',y>700)};
   addEventListener('scroll',onScroll,{passive:true}); onScroll();
   totop.addEventListener('click',()=>{scrollTo({top:0,behavior:reduce?'auto':'smooth'});(document.querySelector('h1')||document.querySelector('.brand')).setAttribute('tabindex','-1');(document.querySelector('h1')||document.querySelector('.brand')).focus({preventScroll:true})});
   const links=[...document.querySelectorAll('nav a')];

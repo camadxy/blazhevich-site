@@ -17,7 +17,7 @@ import pathlib, re, sys
 from html.parser import HTMLParser
 
 SITE = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else pathlib.Path(__file__).resolve().parent.parent / 'site').resolve()
-PAGES = ['index.html', 'biography.html', 'usa.html', 'schools.html', 'concertos.html', 'about.html', 'en/index.html']
+PAGES = ['index.html', 'biography.html', 'usa.html', 'schools.html', 'moscow.html', 'leningrad.html', 'concertos.html', 'about.html', 'en/index.html']
 errors, external = [], set()
 
 class P(HTMLParser):
