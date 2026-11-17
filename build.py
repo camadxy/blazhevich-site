@@ -11,7 +11,7 @@ assets/. Старые адреса разделов (scores.html, en/scores.html
 С флагом --single-page дополнительно собирается artifact.html — вся русская версия одной
 страницей (нужна только для предпросмотра в Claude, на сервер не загружается; шрифты берёт с Google Fonts).
 """
-import argparse, datetime, hashlib, json, pathlib, re, shutil, time
+import argparse, datetime, hashlib, html, json, pathlib, re, shutil, time
 
 ROOT = pathlib.Path(__file__).parent
 
@@ -32,6 +32,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument('--release', action='store_true')
 ap.add_argument('--domain', default='')
 ap.add_argument('--lastmod', default='', help='optional YYYY-MM-DD content revision date')
+ap.add_argument('--news-dir', default='', help='папка с выпусками ленты (по умолчанию data/news)')
 ap.add_argument('--single-page', action='store_true', help='дополнительно собрать artifact.html (предпросмотр)')
 a = ap.parse_args()
 DOM = a.domain.rstrip('/')
@@ -257,14 +258,112 @@ def jsonld(path, lang, url, title, desc):
                   'name': '13 концертов для тромбона' if ru else 'The 13 trombone concertos',
                   'numberOfItems': len(items), 'itemListElement': items})
     else:
-        g.append({'@type': 'WebPage', '@id': f'{url}#page', 'url': url, 'name': title, 'description': desc,
-                  'inLanguage': lang, 'isPartOf': {'@id': f'{DOM}/#website'}, 'about': {'@id': person['@id']}})
-        g.append(person)
+        wp = {'@type': 'WebPage', '@id': f'{url}#page', 'url': url, 'name': title, 'description': desc,
+              'inLanguage': lang, 'isPartOf': {'@id': f'{DOM}/#website'}}
+        if path.startswith('news/'):   # лента — новости медных, а не страница о Блажевиче
+            g.append(wp)
+        else:
+            g += [{**wp, 'about': {'@id': person['@id']}}, person]
     if path in CRUMBS:
         g.append({'@type': 'BreadcrumbList', 'itemListElement': [
             {'@type': 'ListItem', 'position': i, 'name': n_, 'item': f'{DOM}/{u}'} for i, (n_, u) in enumerate(CRUMBS[path], 1)]})
     data = json.dumps({'@context': 'https://schema.org', '@graph': g}, ensure_ascii=False, separators=(',', ':'))
     return '<script type="application/ld+json">' + data.replace('</', '<\\/') + '</script>'
+
+# ---------------- «Лента»: ежедневный дайджест новостей медных (PLAN.md, этап «Лента») ----------------
+# Выпуски лежат в data/news/ГГГГ-ММ-ДД.json, их пишет tools/news_agent.py. Пока выпусков нет,
+# сборка ничего не добавляет: ни панели на главной, ни /news/, ни feed.xml.
+NEWS_DIR = pathlib.Path(a.news_dir) if a.news_dir else ROOT / 'data' / 'news'
+NEWS_MAX, NEWS_PANEL, NEWS_ARCHIVE, NEWS_FEED = 15, 5, 90, 50
+NEWS_INSTR = {'trombone': 'тромбон', 'trumpet': 'труба', 'horn': 'валторна', 'tuba': 'туба', 'euphonium': 'эуфониум',
+              'cornet': 'корнет', 'flugelhorn': 'флюгельгорн', 'brass-band': 'брасс-бэнд'}
+NEWS_KIND = {'competition': 'конкурс', 'vacancy': 'вакансия', 'premiere': 'премьера', 'appointment': 'назначение',
+             'obituary': 'память', 'festival': 'фестиваль', 'album': 'альбом', 'masterclass': 'мастер-класс'}
+_MONTHS = 'января февраля марта апреля мая июня июля августа сентября октября ноября декабря'.split()
+_esc = lambda t: html.escape(str(t), quote=True)
+_weburl = lambda u: isinstance(u, str) and re.match(r'https?://[^\s"<>]+$', u) is not None
+
+def ru_date(iso):
+    d = datetime.date.fromisoformat(iso)
+    return f'{d.day} {_MONTHS[d.month - 1]} {d.year}'
+
+def load_news():
+    """Выпуски от нового к старому. Позиция без заголовка, ссылки на первоисточник или даты публикации в выпуск не идёт."""
+    out = []
+    for f in sorted(NEWS_DIR.glob('[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].json'), reverse=True)[:NEWS_ARCHIVE]:
+        d = json.loads(f.read_text(encoding='utf-8'))
+        datetime.date.fromisoformat(f.stem)
+        items = [i for i in d.get('items', []) if i.get('title') and _weburl(i.get('url')) and i.get('published')]
+        items.sort(key=lambda i: i['published'], reverse=True)          # свежие выше…
+        items.sort(key=lambda i: float(i.get('score', 0)), reverse=True)   # …но главный порядок — по оценке (сортировка устойчивая)
+        if items:
+            out.append({'release': f.stem, 'items': items[:NEWS_MAX]})
+    return out
+
+def news_card(i):
+    tags = [NEWS_INSTR[t] for t in i.get('instruments', []) if t in NEWS_INSTR] + [NEWS_KIND[t] for t in i.get('kinds', []) if t in NEWS_KIND]
+    lang = '' if i.get('lang', 'ru') == 'ru' else f' lang="{_esc(i["lang"])}"'
+    more = ''.join(f'<a href="{_esc(c["url"])}" rel="noopener">{_esc(c.get("source", "ещё источник"))}</a>'
+                   for c in i.get('cluster', []) if _weburl(c.get('url')))
+    return (f'<li class="news-item" data-agent-instruments="{_esc(" ".join(i.get("instruments", [])))}">'
+            f'<p class="news-meta"><span class="news-source">{_esc(i.get("source", ""))}</span><time datetime="{_esc(i["published"])}">{ru_date(i["published"])}</time></p>'
+            f'<h3{lang}><a href="{_esc(i["url"])}" rel="noopener">{_esc(i["title"])}</a></h3>'
+            + (f'<p class="news-sum">{_esc(i["summary"])}</p>' if i.get('summary') else '')
+            + (f'<p class="news-tags">{"".join(f"<span>{t}</span>" for t in tags)}</p>' if tags else '')
+            + (f'<p class="news-more">Об этом же: {more}</p>' if more else '') + '</li>')
+
+def news_chips(items):
+    """Чипы фильтра по инструментам — только те, что есть в выпуске. Без JavaScript скрыты (фильтровать нечем)."""
+    have = [k for k in NEWS_INSTR if any(k in i.get('instruments', []) for i in items)]
+    if len(have) < 2:
+        return ''
+    return ('<p class="news-chips" data-agent-chips hidden><button type="button" data-agent-filter="" aria-pressed="true">Все</button>'
+            + ''.join(f'<button type="button" data-agent-filter="{k}" aria-pressed="false">{NEWS_INSTR[k]}</button>' for k in have) + '</p>')
+
+def news_panel(issue):
+    """Панель на главной: первые пять позиций свежего выпуска (остальные в разметке, скрыты — для фильтра)."""
+    return ('<section id="news" class="block news-panel" aria-labelledby="news-title"><div class="wrap">\n'
+            '  <div class="section-head reveal"><h2 id="news-title">Лента</h2>'
+            f'<div class="eyebrow">Новости медных духовых · выпуск от <time datetime="{issue["release"]}">{ru_date(issue["release"])}</time></div>'
+            '<p>Конкурсы, назначения, премьеры и записи: что произошло у тромбонистов, трубачей, валторнистов и тубистов. Каждая заметка ведёт на первоисточник.</p></div>\n'
+            + news_chips(issue['items'])
+            + f'<ol class="news-list reveal" data-agent-list data-agent-release="{issue["release"]}" data-agent-live="news/today.json" data-agent-limit="{NEWS_PANEL}">'
+            + ''.join(news_card(i) for i in issue['items']) + '</ol>\n'
+            '  <p class="news-foot reveal"><a class="btn btn-ghost" href="news/">Весь выпуск и архив</a><a href="feed.xml">RSS</a></p>\n'
+            '</div></section>\n')
+
+def news_page(issue, issues, permalink):
+    """Страница выпуска: /news/ (свежий, с архивом по дням) и /news/ГГГГ-ММ-ДД.html (постоянный адрес)."""
+    cur = ' aria-current="page"'   # вне f-string-выражения: бэкслеш внутри выражения валиден только с Python 3.12
+    arch = ''.join(f'<li><a href="{i["release"]}.html"{cur if permalink and i is issue else ""}>'
+                   f'<time datetime="{i["release"]}">{ru_date(i["release"])}</time></a><span>{len(i["items"])}</span></li>' for i in issues)
+    return ('<section id="news" class="block news-page"><div class="wrap">\n'
+            '  <div class="section-head reveal"><a class="crumb" href="../index.html">← Главная</a>'
+            f'<h1 class="page-title">Лента</h1><div class="eyebrow">Выпуск от <time datetime="{issue["release"]}">{ru_date(issue["release"])}</time></div>'
+            '<p>Ежедневный дайджест новостей медных духовых. Заметки ведут на первоисточники; пересказ не заменяет оригинал.</p></div>\n'
+            + news_chips(issue['items'])
+            + f'<ol class="news-list reveal" data-agent-list data-agent-release="{issue["release"]}">' + ''.join(news_card(i) for i in issue['items']) + '</ol>\n'
+            + f'  <div class="news-archive reveal"><h2>Архив по дням</h2><ol>{arch}</ol><p class="note"><a href="../feed.xml">RSS-лента</a></p></div>\n'
+            '</div></section>\n')
+
+def news_feed(issues):
+    """RSS 2.0: последние позиции ленты. Адрес канала — домен публичной сборки (в черновике — основной домен проекта)."""
+    from xml.sax.saxutils import escape
+    from email.utils import format_datetime
+    base = DOM or 'https://blazhevich.tech'
+    rfc = lambda iso: format_datetime(datetime.datetime.fromisoformat(iso + 'T00:00:00+00:00'))
+    rows = [(i, s['release']) for s in issues for i in s['items']][:NEWS_FEED]
+    items = ''.join(
+        f'  <item><title>{escape(i["title"])}</title><link>{escape(i["url"])}</link><guid isPermaLink="false">{escape(i.get("id") or i["url"])}</guid>'
+        f'<pubDate>{rfc(i["published"])}</pubDate><source url="{escape(base)}/news/{rel}.html">{escape(i.get("source", ""))}</source>'
+        + (f'<description>{escape(i["summary"])}</description>' if i.get('summary') else '') + '</item>\n' for i, rel in rows)
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n<channel>\n'
+            f'  <title>Blazhevich — Лента: новости медных духовых</title>\n  <link>{base}/news/</link>\n'
+            '  <description>Ежедневный дайджест: тромбон, труба, валторна, туба, брасс-бэнды. Ссылки на первоисточники.</description>\n'
+            f'  <language>ru</language>\n  <lastBuildDate>{rfc(issues[0]["release"])}</lastBuildDate>\n'
+            f'  <atom:link href="{base}/feed.xml" rel="self" type="application/rss+xml"/>\n{items}</channel>\n</rss>\n')
+
+NEWS = load_news()
 
 def head(title, desc, path, lang, prefix, fonts):
     url = f'{DOM}/{path}'.replace('/index.html', '/') if DOM else ''
@@ -302,6 +401,8 @@ def head(title, desc, path, lang, prefix, fonts):
                  'imagesizes="(max-aspect-ratio: 2880/1568) 184vh, 100vw" fetchpriority="high">')
         # шрифт надписи BLAZHEVICH на первом экране: без preload браузер узнаёт о нём только после разбора fonts.css
         m.append(f'<link rel="preload" as="font" type="font/woff2" href="{prefix}assets/fonts/cormorant-garamond-normal-latin.woff2" crossorigin>')
+    if NEWS and lang == 'ru':   # автообнаружение RSS ленты
+        m.append(f'<link rel="alternate" type="application/rss+xml" title="Blazhevich — Лента" href="{prefix}feed.xml">')
     m.append(fonts)
     return '\n'.join(m)
 
@@ -342,9 +443,10 @@ for f, (ss, title, desc) in PAGES.items():
     par = PARENT_RU.get(f)
     if f == 'index.html':   # весь сайт одной страницей: первый экран, разделы подряд, боковое меню
         body = (f'<a class="skip" href="#main">Перейти к содержимому</a>\n' + DRAFT
-                + rail(NAV_RU, '<a class="lang" href="en/index.html" hreflang="en" lang="en">EN</a>', 'Разделы')
+                + rail(NAV_RU + ([('news', 'Лента')] if NEWS else []), '<a class="lang" href="en/index.html" hreflang="en" lang="en">EN</a>', 'Разделы')
                 + '<div class="progress" aria-hidden="true"></div>\n<button class="fab" type="button" popovertarget="menu">Меню</button>\n'
-                + '<main id="main">\n' + ''.join(deco(sec(s_), n=i) for i, s_ in enumerate(ss)) + '</main>\n')
+                + '<main id="main">\n' + ''.join(deco(sec(s_), n=i) + (news_panel(NEWS[0]) if NEWS and s_ == 'hero' else '')
+                                                 for i, s_ in enumerate(ss)) + '</main>\n')
         footer = FOOTER_RU()
     else:
         crumb = (par[1], f'index.html#{par[0]}') if par else ('Главная', 'index.html')
@@ -359,6 +461,23 @@ for f, (ss, title, desc) in PAGES.items():
         body = body.replace(f'<a href="index.html#{par[0]}">', f'<a href="index.html#{par[0]}" class="active">', 1)
     (OUT / f).write_text(page('ru', title, desc, f, '', body,
                               '<link rel="stylesheet" href="assets/fonts-v2.css">', footer))
+if NEWS:   # «Лента»: свежий выпуск с архивом, постоянные адреса выпусков, RSS и снимок для живого обновления
+    (OUT / 'news').mkdir()
+    nav_news = ''.join('<a href="../' + (f'{i}.html' if f'{i}.html' in PAGES else f'index.html#{i}') + f'">{t}</a>' for i, t in NAV_RU) \
+        + '<a href="index.html" class="active">Лента</a>'
+    news_footer = re.sub(r'href="(?!https?:|#|mailto:)', 'href="../', FOOTER_RU())
+    for n_, issue in enumerate([NEWS[0]] + NEWS):
+        permalink = n_ > 0
+        f = f'news/{issue["release"]}.html' if permalink else 'news/index.html'
+        title = (f'Лента: выпуск от {ru_date(issue["release"])} — Blazhevich' if permalink else 'Лента — новости медных инструментов — Blazhevich')
+        desc = f'Новости медных духовых, выпуск от {ru_date(issue["release"])}: ' + '; '.join(i['title'] for i in issue['items'][:3])
+        body = header(nav_news, '<a class="lang" href="../en/index.html" hreflang="en" lang="en">EN</a>', '../index.html') \
+            + '<main id="main">\n' + news_page(issue, NEWS, permalink) + '</main>\n'
+        (OUT / f).write_text(page('ru', _esc(title), _esc(desc[:300]), f, '../', body,
+                                  '<link rel="stylesheet" href="../assets/fonts-v2.css">', news_footer))
+    (OUT / 'feed.xml').write_text(news_feed(NEWS))
+    (OUT / 'news' / 'today.json').write_text(json.dumps(NEWS[0], ensure_ascii=False, separators=(',', ':')) + '\n')
+
 for i, t in NAV_RU:   # старые адреса разделов
     if f'{i}.html' in PAGES:   # отдельная страница уже собрана — стаб не нужен
         continue
@@ -402,7 +521,9 @@ if a.release:
     today = datetime.date.fromisoformat(a.lastmod).isoformat() if a.lastmod else datetime.date.today().isoformat()
     urls = [''] + [f for f in PAGES if f != 'index.html'] + ['en/'] + [f'en/{f}' for f in EN_DOSSIERS]
     (OUT / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        + ''.join(f'  <url><loc>{DOM}/{u}</loc><lastmod>{today}</lastmod></url>\n' for u in urls) + '</urlset>\n')
+        + ''.join(f'  <url><loc>{DOM}/{u}</loc><lastmod>{today}</lastmod></url>\n' for u in urls)
+        + (f'  <url><loc>{DOM}/news/</loc><lastmod>{NEWS[0]["release"]}</lastmod></url>\n' if NEWS else '')
+        + ''.join(f'  <url><loc>{DOM}/news/{i["release"]}.html</loc><lastmod>{i["release"]}</lastmod></url>\n' for i in NEWS) + '</urlset>\n')
     (OUT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {DOM}/sitemap.xml\n')
 
 # ---------------- Одностраничная версия для предпросмотра на claude.ai ----------------

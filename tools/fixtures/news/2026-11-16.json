@@ -1,0 +1,154 @@
+{
+ "release": "2026-11-16",
+ "generated_at": "2026-11-16T03:00:00Z",
+ "counts": {
+  "fetched": 0,
+  "kept": 7,
+  "dropped_dupes": 0
+ },
+ "items": [
+  {
+   "id": "2026-11-16-01",
+   "title": "ПРОБНАЯ ЗАПИСЬ: объявлены результаты конкурса тромбонистов",
+   "url": "https://example.org/sample/1",
+   "source": "Пробный источник A",
+   "source_weight": 2,
+   "lang": "ru",
+   "published": "2026-11-15",
+   "summary": "Это пробный текст для проверки вёрстки. Он не описывает настоящее событие и на сайт не попадает.",
+   "instruments": [
+    "trombone"
+   ],
+   "kinds": [
+    "competition"
+   ],
+   "score": 9.0,
+   "cluster": [
+    {
+     "source": "Пробный источник B",
+     "url": "https://example.org/sample/1b"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-16-02",
+   "title": "SAMPLE ENTRY: principal trumpet appointment announced",
+   "url": "https://example.org/sample/2",
+   "source": "Sample source C",
+   "source_weight": 2,
+   "lang": "en",
+   "published": "2026-11-16",
+   "summary": "",
+   "instruments": [
+    "trumpet"
+   ],
+   "kinds": [
+    "appointment"
+   ],
+   "score": 8.5,
+   "cluster": []
+  },
+  {
+   "id": "2026-11-16-03",
+   "title": "ПРОБНАЯ ЗАПИСЬ: премьера концерта для валторны",
+   "url": "https://example.org/sample/3",
+   "source": "Пробный источник A",
+   "source_weight": 2,
+   "lang": "ru",
+   "published": "2026-11-14",
+   "summary": "Пробный текст второй заметки, чуть длиннее первого, чтобы увидеть перенос строк в узкой колонке на телефоне.",
+   "instruments": [
+    "horn"
+   ],
+   "kinds": [
+    "premiere"
+   ],
+   "score": 8.0,
+   "cluster": []
+  },
+  {
+   "id": "2026-11-16-04",
+   "title": "SAMPLE ENTRY: brass band championship results",
+   "url": "https://example.org/sample/4",
+   "source": "Sample source D",
+   "source_weight": 2,
+   "lang": "en",
+   "published": "2026-11-16",
+   "summary": "",
+   "instruments": [
+    "brass-band",
+    "cornet"
+   ],
+   "kinds": [
+    "competition"
+   ],
+   "score": 7.5,
+   "cluster": []
+  },
+  {
+   "id": "2026-11-16-05",
+   "title": "ПРОБНАЯ ЗАПИСЬ: мастер-класс для тубистов",
+   "url": "https://example.org/sample/5",
+   "source": "Пробный источник B",
+   "source_weight": 2,
+   "lang": "ru",
+   "published": "2026-11-13",
+   "summary": "",
+   "instruments": [
+    "tuba",
+    "euphonium"
+   ],
+   "kinds": [
+    "masterclass"
+   ],
+   "score": 7.0,
+   "cluster": []
+  },
+  {
+   "id": "2026-11-16-06",
+   "title": "ПРОБНАЯ ЗАПИСЬ: фестиваль духовых оркестров",
+   "url": "https://example.org/sample/6",
+   "source": "Пробный источник B",
+   "source_weight": 2,
+   "lang": "ru",
+   "published": "2026-11-12",
+   "summary": "",
+   "instruments": [
+    "brass-band"
+   ],
+   "kinds": [
+    "festival"
+   ],
+   "score": 6.5,
+   "cluster": []
+  },
+  {
+   "id": "2026-11-16-07",
+   "title": "SAMPLE ENTRY: new trombone album",
+   "url": "https://example.org/sample/7",
+   "source": "Sample source C",
+   "source_weight": 2,
+   "lang": "en",
+   "published": "2026-11-11",
+   "summary": "",
+   "instruments": [
+    "trombone"
+   ],
+   "kinds": [
+    "album"
+   ],
+   "score": 6.0,
+   "cluster": []
+  },
+  {
+   "title": "запись без ссылки отбрасывается",
+   "published": "2026-11-10",
+   "score": 99
+  },
+  {
+   "title": "запись без даты отбрасывается",
+   "url": "https://example.org/sample/x",
+   "score": 99
+  }
+ ]
+}

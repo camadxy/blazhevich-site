@@ -1,0 +1,70 @@
+{
+ "release": "2026-11-15",
+ "generated_at": "2026-11-15T03:00:00Z",
+ "counts": {
+  "fetched": 0,
+  "kept": 7,
+  "dropped_dupes": 0
+ },
+ "items": [
+  {
+   "id": "2026-11-16-01",
+   "title": "ПРОБНАЯ ЗАПИСЬ: объявлены результаты конкурса тромбонистов",
+   "url": "https://example.org/sample/1",
+   "source": "Пробный источник A",
+   "source_weight": 2,
+   "lang": "ru",
+   "published": "2026-11-15",
+   "summary": "Это пробный текст для проверки вёрстки. Он не описывает настоящее событие и на сайт не попадает.",
+   "instruments": [
+    "trombone"
+   ],
+   "kinds": [
+    "competition"
+   ],
+   "score": 9.0,
+   "cluster": [
+    {
+     "source": "Пробный источник B",
+     "url": "https://example.org/sample/1b"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-16-02",
+   "title": "SAMPLE ENTRY: principal trumpet appointment announced",
+   "url": "https://example.org/sample/2",
+   "source": "Sample source C",
+   "source_weight": 2,
+   "lang": "en",
+   "published": "2026-11-16",
+   "summary": "",
+   "instruments": [
+    "trumpet"
+   ],
+   "kinds": [
+    "appointment"
+   ],
+   "score": 8.5,
+   "cluster": []
+  },
+  {
+   "id": "2026-11-16-03",
+   "title": "ПРОБНАЯ ЗАПИСЬ: премьера концерта для валторны",
+   "url": "https://example.org/sample/3",
+   "source": "Пробный источник A",
+   "source_weight": 2,
+   "lang": "ru",
+   "published": "2026-11-14",
+   "summary": "Пробный текст второй заметки, чуть длиннее первого, чтобы увидеть перенос строк в узкой колонке на телефоне.",
+   "instruments": [
+    "horn"
+   ],
+   "kinds": [
+    "premiere"
+   ],
+   "score": 8.0,
+   "cluster": []
+  }
+ ]
+}

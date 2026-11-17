@@ -966,3 +966,43 @@ body > footer{position:relative;margin-top:0;border-top:0;padding-top:calc(var(-
   .ch-body a[href^="http"]::after,.src-block a[href^="http"]::after,.record p a[href^="http"]::after{
     content:" (" attr(href) ")";font-size:10px;color:#56432e;word-break:break-all}
 }
+
+/* ---------- «Лента»: дайджест новостей медных (панель на главной и страницы /news/) ---------- */
+.news-chips{display:flex;flex-wrap:wrap;gap:var(--s-2);margin:0 0 var(--s-5)}
+.news-chips button{min-height:36px;padding:0 var(--s-4);border:1px solid var(--rule);border-radius:var(--radius);background:transparent;color:var(--muted);font:600 var(--t-small)/1 var(--body);cursor:pointer;transition:background-color .2s,color .2s,border-color .2s}
+.news-chips button:hover{color:var(--ink);border-color:var(--ink)}
+.news-chips button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--on-accent)}
+.news-chips button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.news-list{list-style:none;margin:0;padding:var(--s-2) var(--s-6);display:grid;background:var(--surface);
+  border:14px solid transparent;border-image:var(--frame-gold) 14 / 14px / 0 stretch;box-shadow:var(--lift-1)}
+.news-item{display:grid;grid-template-columns:minmax(0,13rem) minmax(0,1fr);gap:var(--s-1) var(--s-6);padding-block:var(--s-5);border-bottom:1px solid var(--line);min-width:0}
+.news-item:last-child,.news-item.is-last{border-bottom:0}
+.news-item > *{grid-column:2;margin:0;min-width:0}
+.news-item .news-meta{grid-column:1;grid-row:1 / span 4;display:grid;align-content:start;gap:var(--s-1);font-size:var(--t-small);color:var(--muted)}
+.news-source{font:italic 600 18px/1.2 var(--display);color:var(--gold)}
+.news-item h3{font:500 var(--t-title-s)/1.2 var(--display);overflow-wrap:anywhere}
+.news-item h3 a{color:var(--ink);text-decoration:none}
+.news-item h3 a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:.18em}
+.news-sum{max-width:var(--measure);color:var(--ink)}
+.news-tags{display:flex;flex-wrap:wrap;gap:var(--s-2);margin-top:var(--s-1)}
+.news-tags span{padding:0 var(--s-2);border:1px solid var(--rule);border-radius:var(--radius);font-size:var(--t-small);font-weight:600;color:var(--gold);white-space:nowrap}
+.news-more{font-size:var(--t-small);color:var(--muted)}
+.news-more a{margin-left:var(--s-2)}
+.news-panel .news-item:nth-child(n+6){display:none}          /* на главной — пять позиций; остальные в выпуске */
+.js .news-list[data-agent-ready] .news-item{display:none}
+.js .news-list[data-agent-ready] .news-item.is-on{display:grid}
+.news-empty{padding-block:var(--s-5);color:var(--muted)}
+.news-foot{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-5);margin:var(--s-6) 0 0}
+.news-archive{margin-top:var(--s-8);max-width:var(--measure)}
+.news-archive h2{font:500 var(--t-title-m)/1.15 var(--display);margin:0 0 var(--s-4)}
+.news-archive ol{list-style:none;margin:0 0 var(--s-4);padding:0;border-top:1px solid var(--line)}
+.news-archive li{display:flex;justify-content:space-between;gap:var(--s-4);padding:var(--s-3) 0;border-bottom:1px solid var(--line)}
+.news-archive li span{color:var(--muted);font-size:var(--t-small)}
+.news-archive a[aria-current]{font-weight:600;color:var(--ink);text-decoration:none}
+@media(max-width:820px){
+  .news-list{padding-inline:var(--s-3)}
+  .news-item{grid-template-columns:minmax(0,1fr)}
+  .news-item > *,.news-item .news-meta{grid-column:1;grid-row:auto}
+  .news-item .news-meta{display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-3);align-items:baseline}
+}
+@media print{.news-chips,.news-foot{display:none}.news-list{border:1px solid #c8b48d;border-image:none;box-shadow:none;background:none}.news-panel .news-item:nth-child(n+6){display:grid}}
