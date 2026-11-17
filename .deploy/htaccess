@@ -41,7 +41,7 @@ RedirectMatch 404 (?i)^/\.github
   </FilesMatch>
 
   # Основной CSS собирается в assets/main.<хэш от содержимого>.css: содержимое меняется —
-  # меняется имя файла, поэтому его тоже можно кэшировать навсегда. fonts.css без хэша —
+  # меняется имя файла, поэтому его тоже можно кэшировать навсегда. fonts-v2.css без хэша —
   # остаётся на обычном «1 день» из mod_expires выше.
   <FilesMatch "main\.[0-9a-f]+\.css$">
     Header set Cache-Control "public, max-age=31536000, immutable"

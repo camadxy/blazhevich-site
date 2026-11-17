@@ -297,7 +297,11 @@ def head(title, desc, path, lang, prefix, fonts):
                   f'<link rel="alternate" hreflang="x-default" href="{url}">']
         m.append(jsonld(path, lang, url, title, desc))
     if path in ('index.html', 'en/index.html'):   # снимок первого экрана браузер начинает качать сразу, не дожидаясь разбора встроенных стилей
-        m.append(f'<link rel="preload" as="image" type="image/webp" href="{prefix}assets/hero-home.webp" fetchpriority="high">')
+        hs = ', '.join(f'{prefix}assets/hero-home-{w}.avif {w}w' for w in (960, 1440, 2880))   # те же srcset и sizes, что у <source> в hero
+        m.append(f'<link rel="preload" as="image" type="image/avif" imagesrcset="{hs}" '
+                 'imagesizes="(max-aspect-ratio: 2880/1568) 184vh, 100vw" fetchpriority="high">')
+        # шрифт надписи BLAZHEVICH на первом экране: без preload браузер узнаёт о нём только после разбора fonts.css
+        m.append(f'<link rel="preload" as="font" type="font/woff2" href="{prefix}assets/fonts/cormorant-garamond-normal-latin.woff2" crossorigin>')
     m.append(fonts)
     return '\n'.join(m)
 
@@ -354,7 +358,7 @@ for f, (ss, title, desc) in PAGES.items():
     if par:
         body = body.replace(f'<a href="index.html#{par[0]}">', f'<a href="index.html#{par[0]}" class="active">', 1)
     (OUT / f).write_text(page('ru', title, desc, f, '', body,
-                              '<link rel="stylesheet" href="assets/fonts.css">', footer))
+                              '<link rel="stylesheet" href="assets/fonts-v2.css">', footer))
 for i, t in NAV_RU:   # старые адреса разделов
     if f'{i}.html' in PAGES:   # отдельная страница уже собрана — стаб не нужен
         continue
@@ -375,7 +379,7 @@ en_secs = {re.match(r'<section id="([\w-]+)"', p).group(1): p for p in re.split(
 assert set(en_secs) == {'hero', *EN_PAGES}, sorted(en_secs)
 id_page_en = {i: ('index.html', k) for k in EN_PAGES for i in ids_in(en_secs[k])}
 nav_en = ''.join(f'<a href="#{k}">{v[0]}</a>' for k, v in EN_PAGES.items())
-FONTS_EN = '<link rel="stylesheet" href="../assets/fonts.css">'
+FONTS_EN = '<link rel="stylesheet" href="../assets/fonts-v2.css">'
 body = ('<a class="skip" href="#main">Skip to content</a>\n' + DRAFT
         + rail([(k, v[0]) for k, v in EN_PAGES.items()], '<a class="lang" href="../index.html" hreflang="ru" lang="ru">RU</a>', 'Sections')
         + '<div class="progress" aria-hidden="true"></div>\n<button class="fab" type="button" popovertarget="menu">Menu</button>\n'
