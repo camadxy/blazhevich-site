@@ -37,6 +37,10 @@ _i=(ROOT/'site/index.html').read_text();assert _i.count('id="raichman"')==1 and 
 # EN-досье: кнопка RU парной версии на месте; автограф — только в московском
 assert all('hreflang="ru"' in (ROOT/'site'/pg).read_text() for pg in ['en/moscow.html','en/leningrad.html'])
 assert 'autograph-1903' in (ROOT/'site/en/moscow.html').read_text() and 'autograph-1903' not in (ROOT/'site/en/leningrad.html').read_text()
+# п. 5.0 и 5.2–5.3 PLAN.md: контейнеры страниц сбалансированы; JSON-LD и x-default есть на индексируемых страницах публичной сборки
+for pg in ['index.html','moscow.html','leningrad.html','us-schools.html','en/index.html','en/moscow.html','en/leningrad.html']:
+ s=(ROOT/'site'/pg).read_text();assert s.count('<div')==s.count('</div>'),pg
+ if 'rel="canonical"' in s:assert 'application/ld+json' in s and 'hreflang="x-default"' in s,pg
 def digest():return {str(p.relative_to(ROOT/'site')):hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT/'site').rglob('*') if p.is_file()}
 # Аргументы пересборки берутся из окружения, чтобы проверку можно было запускать
 # сразу после сборки с теми же параметрами (по умолчанию — параметры релиза v3).

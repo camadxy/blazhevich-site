@@ -11,7 +11,7 @@ assets/. Старые адреса разделов (scores.html, en/scores.html
 С флагом --single-page дополнительно собирается artifact.html — вся русская версия одной
 страницей (нужна только для предпросмотра в Claude, на сервер не загружается; шрифты берёт с Google Fonts).
 """
-import argparse, datetime, hashlib, pathlib, re, shutil, time
+import argparse, datetime, hashlib, json, pathlib, re, shutil, time
 
 ROOT = pathlib.Path(__file__).parent
 
@@ -109,6 +109,13 @@ def header(nav_html, lang_link, home):
 VIGNETTE = {'scores': 'v-conservatory-portico.webp', 'listen': 'v-bolshoi-colonnade.webp',
             'biography': 'conservatory-1940s.webp', 'concertos': 'bolshoi-1905.webp',
             'schools': 'conservatory-1940s.webp'}
+# размеры файлов виньеток: с width/height браузер резервирует место до загрузки, вёрстка не прыгает
+VIGNETTE_WH = {'v-conservatory-portico.webp': (420, 490), 'v-bolshoi-colonnade.webp': (470, 460),
+               'conservatory-1940s.webp': (960, 600), 'bolshoi-1905.webp': (960, 600)}
+def vignette(v, prefix=''):
+    w, h = VIGNETTE_WH[v]
+    return (f'<figure class="head-vignette" aria-hidden="true"><img src="{prefix}assets/{v}" alt="" '
+            f'width="{w}" height="{h}" loading="lazy" decoding="async"></figure>')
 # сцена во всю ширину с текстом поверх (assets/scene-*.webp делает tools/scenes/*.py)
 SCENE = {'moscow', 'leningrad'}
 
@@ -116,8 +123,7 @@ def inner(h, crumb, href='index.html', prefix=''):
     """На внутренней странице заголовок секции становится h1 с «хлебной крошкой»."""
     sid = re.match(r'\s*<section id="([\w-]+)"', h)
     v = VIGNETTE.get(sid.group(1)) if sid else None
-    fig = (f'<figure class="head-vignette" aria-hidden="true"><img src="{prefix}assets/{v}" alt="" loading="lazy" decoding="async"></figure>'
-           if v else '')
+    fig = vignette(v, prefix) if v else ''
     cls = f' scene scene-{sid.group(1)}' if sid and sid.group(1) in SCENE else ''
     # url() во встроенном CSS считается от страницы: из папки en/ картинку сцены даём с префиксом
     sty = (f' style="--scene:url({prefix}assets/scene-{sid.group(1)}.webp);--scene-sm:url({prefix}assets/scene-{sid.group(1)}-960.webp)"'
@@ -134,7 +140,7 @@ def deco(h, prefix='', n=0):
     v = VIGNETTE.get(sid.group(1)) if sid else None
     if not v:
         return h
-    fig = f'<figure class="head-vignette" aria-hidden="true"><img src="{prefix}assets/{v}" alt="" loading="lazy" decoding="async"></figure>'
+    fig = vignette(v, prefix)
     return re.sub(r'(<div class="section-head reveal"[^>]*>)', lambda m: m.group(1) + fig, h, count=1)
 
 def rail(items, lang_link, label):
@@ -204,6 +210,62 @@ def typo(html):
 FOOTER_RU = lambda: site_footer('ru')
 FOOTER_EN = lambda: site_footer('en')
 
+# ---------------- JSON-LD: разметка для поисковиков (только в публичной сборке, адреса абсолютные) ----------------
+PERSON_SAME_AS = ['https://ru.wikipedia.org/wiki/Блажевич,_Владислав_Михайлович',
+                  'https://en.wikipedia.org/wiki/Vladislav_Blazhevich',
+                  'https://imslp.org/wiki/Category:Blazhevich,_Vladislav']
+CRUMBS = {  # страница: цепочка «хлебных крошек» (подпись, адрес от корня сайта)
+    'moscow.html': [('Главная', ''), ('Школы', '#schools'), ('Московская тромбоновая школа', 'moscow.html')],
+    'leningrad.html': [('Главная', ''), ('Школы', '#schools'), ('Ленинградская тромбоновая школа', 'leningrad.html')],
+    'us-schools.html': [('Главная', ''), ('Американские школы тромбона', 'us-schools.html')],
+    'en/moscow.html': [('Home', 'en/'), ('Schools', 'en/#schools'), ('The Moscow trombone school', 'en/moscow.html')],
+    'en/leningrad.html': [('Home', 'en/'), ('Schools', 'en/#schools'), ('The Leningrad trombone school', 'en/leningrad.html')],
+}
+_plain = lambda t: re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', t)).strip()
+
+def concerto_rows(lang):
+    """Номер, тональность и дата каждого концерта — из таблицы раздела «Концерты», чтобы разметка не расходилась с текстом."""
+    src = sec('concertos') if lang == 'ru' else sec('page', 'en')
+    body = re.search(r'<table class="conc">.*?<tbody>(.*?)</tbody>', src, re.S).group(1)
+    return [tuple(_plain(c) for c in re.findall(r'<td>(.*?)</td>', r, re.S)[:3]) for r in re.findall(r'<tr>(.*?)</tr>', body, re.S)]
+
+def jsonld(path, lang, url, title, desc):
+    ru = lang == 'ru'
+    person = {'@type': 'Person', '@id': f'{DOM}/#blazhevich',
+              'name': 'Владислав Блажевич' if ru else 'Vladislav Blazhevich',
+              'alternateName': ['Vladislav Blazhevich', 'Владислав Михайлович Блажевич'] if ru
+                               else ['Владислав Блажевич', 'Владислав Михайлович Блажевич'],
+              'birthDate': '1881-08-15', 'deathDate': '1942-04-10',
+              'jobTitle': 'Тромбонист, педагог, композитор' if ru else 'Trombonist, teacher, composer',
+              'sameAs': PERSON_SAME_AS}
+    g = []
+    if path in ('index.html', 'en/index.html'):
+        g.append({'@type': 'WebSite', '@id': f'{DOM}/#website', 'url': f'{DOM}/', 'name': 'Blazhevich',
+                  'inLanguage': ['ru', 'en'], 'about': {'@id': person['@id']}})
+        g.append(person)
+        items = []
+        for n, key, date in concerto_rows(lang):
+            c = {'@type': 'MusicComposition', '@id': f'{url}#concerto-{n}',
+                 'name': f'Концерт № {n} для тромбона' if ru else f'Trombone Concerto No. {n}',
+                 'composer': {'@id': person['@id']}, 'url': f'{url}#concertos'}
+            if key != '—':
+                c['musicalKey'] = key
+            if re.fullmatch(r'\d{4}', date):   # спорные даты («1926 или 1930-е») в разметку не идут
+                c['dateCreated'] = date
+            items.append({'@type': 'ListItem', 'position': int(n), 'item': c})
+        g.append({'@type': 'ItemList', '@id': f'{url}#concertos-list',
+                  'name': '13 концертов для тромбона' if ru else 'The 13 trombone concertos',
+                  'numberOfItems': len(items), 'itemListElement': items})
+    else:
+        g.append({'@type': 'WebPage', '@id': f'{url}#page', 'url': url, 'name': title, 'description': desc,
+                  'inLanguage': lang, 'isPartOf': {'@id': f'{DOM}/#website'}, 'about': {'@id': person['@id']}})
+        g.append(person)
+    if path in CRUMBS:
+        g.append({'@type': 'BreadcrumbList', 'itemListElement': [
+            {'@type': 'ListItem', 'position': i, 'name': n_, 'item': f'{DOM}/{u}'} for i, (n_, u) in enumerate(CRUMBS[path], 1)]})
+    data = json.dumps({'@context': 'https://schema.org', '@graph': g}, ensure_ascii=False, separators=(',', ':'))
+    return '<script type="application/ld+json">' + data.replace('</', '<\\/') + '</script>'
+
 def head(title, desc, path, lang, prefix, fonts):
     url = f'{DOM}/{path}'.replace('/index.html', '/') if DOM else ''
     img = f'{DOM}/assets/og-image.jpg' if DOM else f'{prefix}assets/og-image.jpg'
@@ -223,11 +285,17 @@ def head(title, desc, path, lang, prefix, fonts):
         m += [f'<link rel="canonical" href="{url}">', f'<meta property="og:url" content="{url}">']
         if path in ('index.html', 'en/index.html'):   # языковые пары: общая страница и два досье
             m += [f'<link rel="alternate" hreflang="ru" href="{DOM}/">',
-                  f'<link rel="alternate" hreflang="en" href="{DOM}/en/">']
+                  f'<link rel="alternate" hreflang="en" href="{DOM}/en/">',
+                  f'<link rel="alternate" hreflang="x-default" href="{DOM}/">']
         elif path.removeprefix('en/') in EN_DOSSIERS:
             f_ = path.removeprefix('en/')
             m += [f'<link rel="alternate" hreflang="ru" href="{DOM}/{f_}">',
-                  f'<link rel="alternate" hreflang="en" href="{DOM}/en/{f_}">']
+                  f'<link rel="alternate" hreflang="en" href="{DOM}/en/{f_}">',
+                  f'<link rel="alternate" hreflang="x-default" href="{DOM}/{f_}">']
+        elif lang == 'ru':   # страница только по-русски (например, «Школы США»): ссылка на себя
+            m += [f'<link rel="alternate" hreflang="ru" href="{url}">',
+                  f'<link rel="alternate" hreflang="x-default" href="{url}">']
+        m.append(jsonld(path, lang, url, title, desc))
     if path in ('index.html', 'en/index.html'):   # снимок первого экрана браузер начинает качать сразу, не дожидаясь разбора встроенных стилей
         m.append(f'<link rel="preload" as="image" type="image/webp" href="{prefix}assets/hero-home.webp" fetchpriority="high">')
     m.append(fonts)
@@ -269,7 +337,7 @@ nav = ''.join(f'<a href="#{i}">{t}</a>' for i, t in NAV_RU)
 for f, (ss, title, desc) in PAGES.items():
     par = PARENT_RU.get(f)
     if f == 'index.html':   # весь сайт одной страницей: первый экран, разделы подряд, боковое меню
-        body = (f'<a class="skip" href="#scores">Перейти к содержимому</a>\n' + DRAFT
+        body = (f'<a class="skip" href="#main">Перейти к содержимому</a>\n' + DRAFT
                 + rail(NAV_RU, '<a class="lang" href="en/index.html" hreflang="en" lang="en">EN</a>', 'Разделы')
                 + '<div class="progress" aria-hidden="true"></div>\n<button class="fab" type="button" popovertarget="menu">Меню</button>\n'
                 + '<main id="main">\n' + ''.join(deco(sec(s_), n=i) for i, s_ in enumerate(ss)) + '</main>\n')
@@ -308,12 +376,12 @@ assert set(en_secs) == {'hero', *EN_PAGES}, sorted(en_secs)
 id_page_en = {i: ('index.html', k) for k in EN_PAGES for i in ids_in(en_secs[k])}
 nav_en = ''.join(f'<a href="#{k}">{v[0]}</a>' for k, v in EN_PAGES.items())
 FONTS_EN = '<link rel="stylesheet" href="../assets/fonts.css">'
-body = ('<a class="skip" href="#scores">Skip to content</a>\n' + DRAFT
+body = ('<a class="skip" href="#main">Skip to content</a>\n' + DRAFT
         + rail([(k, v[0]) for k, v in EN_PAGES.items()], '<a class="lang" href="../index.html" hreflang="ru" lang="ru">RU</a>', 'Sections')
         + '<div class="progress" aria-hidden="true"></div>\n<button class="fab" type="button" popovertarget="menu">Menu</button>\n'
         + '<main id="main">\n' + en_secs['hero'] + ''.join(deco(en_secs[k], '../', i) for i, k in enumerate(EN_PAGES, 1)) + '</main>\n')
 (OUT / 'en' / 'index.html').write_text(page(
-    'en', 'Blazhevich — Vladislav Blazhevich, trombone: life, concertos, Clef Studies',
+    'en', 'Vladislav Blazhevich — trombone: life, concertos, Clef Studies',
     'Vladislav Blazhevich (1881–1942): biography, the 13 trombone concertos, Clef Studies and other method books, how his music reached America.',
     'en/index.html', '../', en_words(relink(body, 'index.html', id_page_en)), FONTS_EN, FOOTER_EN()))
 for k, (label, title, _) in EN_PAGES.items():   # старые адреса английских разделов
