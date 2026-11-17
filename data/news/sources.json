@@ -1,0 +1,190 @@
+{
+  "_comment": "Источники ленты. Основание: BRASS-NEWS-SOURCES.md (ресёрч 16.11.2026), раздел B. Здесь только проверенные RSS; источники без RSS (ITG, Музыкальное обозрение, dukhovik.ru, DownBeat, ITEA) подключаются отдельным шагом через скрапинг.",
+  "max_items": 15,
+  "dedupe_window_days": 45,
+  "domain_moves": {
+    "ita-web.org": "trombone.net",
+    "londonjazznews.com": "ukjazznews.com",
+    "van-magazine.de": "van-magazine.com"
+  },
+  "sources": [
+    {
+      "name": "Slipped Disc",
+      "type": "rss",
+      "feed_url": "https://slippedisc.com/feed",
+      "lang": "en",
+      "weight": 3,
+      "instruments": [],
+      "genres": [
+        "classical"
+      ],
+      "require_match": true
+    },
+    {
+      "name": "4barsrest",
+      "type": "rss",
+      "feed_url": "https://www.4barsrest.com/news/rss/news.xml",
+      "lang": "en",
+      "weight": 3,
+      "instruments": [
+        "brass-band"
+      ],
+      "genres": [
+        "brass-band"
+      ],
+      "require_match": false,
+      "note": "в фиде нет pubDate у записей, только lastBuildDate"
+    },
+    {
+      "name": "Last Row Music",
+      "type": "rss",
+      "feed_url": "https://lastrowmusic.com/feed",
+      "lang": "en",
+      "weight": 3,
+      "instruments": [],
+      "genres": [
+        "classical"
+      ],
+      "require_match": false,
+      "note": "все медные: вакансии, назначения, новые сочинения"
+    },
+    {
+      "name": "ITA (trombone.net)",
+      "type": "rss",
+      "feed_url": "https://trombone.net/feed",
+      "lang": "en",
+      "weight": 3,
+      "instruments": [
+        "trombone"
+      ],
+      "genres": [
+        "classical",
+        "jazz"
+      ],
+      "require_match": false
+    },
+    {
+      "name": "HornMatters",
+      "type": "rss",
+      "feed_url": "https://hornmatters.com/feed",
+      "lang": "en",
+      "weight": 2,
+      "instruments": [
+        "horn"
+      ],
+      "genres": [
+        "classical"
+      ],
+      "require_match": false
+    },
+    {
+      "name": "VAN Magazine",
+      "type": "rss",
+      "feed_url": "https://van-magazine.com/feed",
+      "lang": "en",
+      "weight": 2,
+      "instruments": [],
+      "genres": [
+        "classical"
+      ],
+      "require_match": true,
+      "note": "пейволл: 2 статьи в месяц бесплатно"
+    },
+    {
+      "name": "UK Jazz News",
+      "type": "rss",
+      "feed_url": "https://ukjazznews.com/feed",
+      "lang": "en",
+      "weight": 2,
+      "instruments": [],
+      "genres": [
+        "jazz"
+      ],
+      "require_match": true
+    },
+    {
+      "name": "Jazz.ru",
+      "type": "rss",
+      "feed_url": "https://www.jazz.ru/feed/",
+      "lang": "ru",
+      "weight": 2,
+      "instruments": [],
+      "genres": [
+        "jazz"
+      ],
+      "require_match": true
+    },
+    {
+      "name": "ТАСС",
+      "type": "rss",
+      "feed_url": "https://tass.ru/rss/v2.xml",
+      "lang": "ru",
+      "weight": 2,
+      "instruments": [],
+      "genres": [],
+      "require_match": true,
+      "note": "общий поток: брать только записи со словами об инструментах"
+    },
+    {
+      "name": "Jazz-Квадрат",
+      "type": "rss",
+      "feed_url": "https://jazzquad.ru/sitemap.pl?act=RSS",
+      "lang": "ru",
+      "weight": 1,
+      "instruments": [],
+      "genres": [
+        "jazz"
+      ],
+      "require_match": true
+    },
+    {
+      "name": "Reddit r/trombone",
+      "type": "rss",
+      "feed_url": "https://www.reddit.com/r/trombone/.rss",
+      "lang": "en",
+      "weight": 1,
+      "instruments": [
+        "trombone"
+      ],
+      "genres": [],
+      "require_match": false,
+      "note": "Atom; в выпуск идут только записи с распознанным типом события"
+    },
+    {
+      "name": "Reddit r/trumpet",
+      "type": "rss",
+      "feed_url": "https://www.reddit.com/r/trumpet/.rss",
+      "lang": "en",
+      "weight": 1,
+      "instruments": [
+        "trumpet"
+      ],
+      "genres": [],
+      "require_match": false
+    },
+    {
+      "name": "Reddit r/horn",
+      "type": "rss",
+      "feed_url": "https://www.reddit.com/r/horn/.rss",
+      "lang": "en",
+      "weight": 1,
+      "instruments": [
+        "horn"
+      ],
+      "genres": [],
+      "require_match": false
+    },
+    {
+      "name": "Reddit r/Tuba",
+      "type": "rss",
+      "feed_url": "https://www.reddit.com/r/Tuba/.rss",
+      "lang": "en",
+      "weight": 1,
+      "instruments": [
+        "tuba"
+      ],
+      "genres": [],
+      "require_match": false
+    }
+  ]
+}
