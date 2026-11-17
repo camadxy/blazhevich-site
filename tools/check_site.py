@@ -5,7 +5,7 @@
 
 Что проверяется:
   • все страницы на месте;
-  • каждая внутренняя ссылка (href/src/srcset и url() в fonts.css) ведёт на существующий файл,
+  • каждая внутренняя ссылка (href/src/srcset и url() в fonts-v2.css) ведёт на существующий файл,
     а ссылка с #якорем — на существующий id в целевой странице;
   • нет повторяющихся id на странице, у каждой страницы ровно один <h1>;
   • ни одна страница не загружает внешние ресурсы (скрипты, стили, картинки, шрифты с http/https);
@@ -92,13 +92,13 @@ if sm.exists():
         if f.exists() and 'noindex' in f.read_text(encoding='utf-8')[:600]:
             errors.append(f'sitemap.xml: в списке переадресация {loc}')
 
-css = SITE / 'assets' / 'fonts.css'
+css = SITE / 'assets' / 'fonts-v2.css'
 if css.exists():
     for u in re.findall(r'url\(([^)]+)\)', css.read_text()):
         checked += 1
-        if not (css.parent / u.strip('\'"')).exists(): errors.append(f'fonts.css: нет файла {u}')
+        if not (css.parent / u.strip('\'"')).exists(): errors.append(f'fonts-v2.css: нет файла {u}')
 else:
-    errors.append('нет assets/fonts.css')
+    errors.append('нет assets/fonts-v2.css')
 
 idx = (SITE / 'index.html').read_text(encoding='utf-8') if (SITE / 'index.html').exists() else ''
 robots = re.search(r'<meta name="robots" content="([^"]+)"', idx)
