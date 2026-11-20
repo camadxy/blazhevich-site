@@ -44,7 +44,8 @@ assert 'созданное с помощью ИИ' in (ROOT/'site/about.html').r
 assert 'AI-generated' in (ROOT/'site/en/index.html').read_text()
 for pg in ['index.html','en/index.html']:
  s=(ROOT/'site'/pg).read_text()
- assert all(f in s for f in ['conservatory-1940s.webp','bolshoi-1905.webp','goznak-moscow.webp'])
+ assert all(f in s for f in ['conservatory-1940s.webp','bolshoi-1905.webp']) and 'goznak-moscow' not in s
+ assert 'class="hero-mark"' in s and '<header id="top-bar" class="home">' in s
 def digest():return {str(p.relative_to(ROOT/'site')):hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT/'site').rglob('*') if p.is_file()}
 # Аргументы пересборки берутся из окружения, чтобы проверку можно было запускать
 # сразу после сборки с теми же параметрами (по умолчанию — параметры релиза v3).

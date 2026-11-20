@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Московская тромбонная школа — Blazhevich</title>
+<meta name="description" content="Досье о московской школе тромбона: Витнебен, Борк, Блажевич, Щербинин и его ученики, гнесинская ветвь, ноты и записи.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#f4eee1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4eee1'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Georgia,serif' font-weight='600' font-size='40' fill='%232a2118'%3EB%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Blazhevich">
+<meta property="og:title" content="Московская тромбонная школа — Blazhevich">
+<meta property="og:description" content="Досье о московской школе тромбона: Витнебен, Борк, Блажевич, Щербинин и его ученики, гнесинская ветвь, ноты и записи.">
+<meta property="og:image" content="https://blazhevich.tech/assets/og-image.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://blazhevich.tech/moscow.html">
+<meta property="og:url" content="https://blazhevich.tech/moscow.html">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+/* Hallmark · page · genre: editorial · theme: custom (cream empire, by request) · job: find a score, then read the life · hero: Settled, name left, the signed 1903 photograph in a mat right · nav: wordmark left, links right (decided) · footer: one line (decided) · surface: tinted paper · signature: the 1903 photograph with his own signature · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H5 E4 S4 R4 V3 · weakest: V, cream paper and a serif were pinned by the owner; the page earns its look from the signed photograph and a catalogue ruled like a library card index instead of tiles */
+/* Hallmark · waive 65 · the owner asked for cream classical · paper and serif stay, the accent moved off clay to empire blue */
+/* Hallmark · dismissed 67 · IMSLP is the library's own name, not a label set in capitals */
+
+/* ---------- Tokens ---------- */
+:root{
+  color-scheme:light;
+  /* paper and ink */
+  --paper:#f4eee1;          /* page */
+  --surface:#fbf8f1;        /* raised paper: fields, table, panels */
+  --band:#ece3cf;           /* a band one step darker than the page */
+  --ink:#2a2118;            /* text, 13.7:1 on paper */
+  --muted:#5a4d3f;          /* secondary text, 7.1:1 */
+  --accent:#24426b;         /* empire blue: links and the one primary action, 8.8:1 */
+  --accent-hi:#18304f;
+  --gold:#7a5a17;           /* years and figures set in type, 5.5:1 */
+  --rule:#a8843a;           /* gilt hairlines, decoration only */
+  --line:#d6c9ae;           /* quiet hairlines */
+  --field:#8c7b60;          /* field and outline edges, 3.5:1 */
+  --on-accent:#fbf8f1;
+  --select:#d9c79c;
+  --tint:color-mix(in srgb,var(--rule) 12%,transparent);
+  --shadow:color-mix(in srgb,var(--ink) 14%,transparent);
+
+  --display:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
+  --body:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  /* type scale, 1.2 */
+  --t-small:14px;
+  --t-body:17px;
+  --t-lead:19px;
+  --t-title:28px;
+  --t-section:clamp(40px,4.6vw,56px);
+  --t-hero:clamp(48px,6.2vw,88px);
+
+  /* 4px spacing scale */
+  --s-1:4px;--s-2:8px;--s-3:12px;--s-4:16px;--s-5:24px;--s-6:32px;--s-7:48px;--s-8:64px;--s-9:96px;--s-10:128px;
+
+  --radius:2px;
+  --measure:65ch;
+  --container:1200px;
+  --header-h:64px;
+  --gutter-l:max(var(--s-4),env(safe-area-inset-left,0px));
+  --gutter-r:max(var(--s-4),env(safe-area-inset-right,0px));
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+/* ---------- Base ---------- */
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + var(--s-5));overflow-x:clip}
+body{margin:0;background:var(--paper);color:var(--ink);font:var(--t-body)/1.65 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip;text-rendering:optimizeLegibility}
+::selection{background:var(--select);color:var(--ink)}
+a{color:var(--accent);text-underline-offset:.22em;text-decoration-thickness:1px}
+a:hover{color:var(--accent-hi);text-decoration-thickness:2px}
+a:active{color:var(--ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:var(--s-1);border-radius:var(--radius)}
+img{max-width:100%;height:auto}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.08;text-wrap:balance;margin:0;color:var(--ink);overflow-wrap:break-word;min-width:0}
+h2{font-size:var(--t-section);letter-spacing:-.005em}
+h3{font-size:var(--t-title);font-weight:600;line-height:1.15}
+p{margin:0}
+strong,b{font-weight:600}
+.wrap{max-width:var(--container);margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+.skip{position:absolute;left:var(--s-4);top:-80px;background:var(--ink);color:var(--paper);padding:var(--s-3) var(--s-4);z-index:40}
+.skip:focus{top:var(--s-3)}
+
+/* Draft banner on the test build */
+.draft{background:var(--band);color:var(--muted);font-size:var(--t-small);text-align:center;padding-block:var(--s-2);padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+
+/* ---------- Header ---------- */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.scrolled{border-bottom-color:var(--line)}
+/* home: the first screen is bare, the bar slides in once it is scrolled past; without JS it simply stays */
+.js header.home{position:fixed;left:0;right:0;transform:translateY(-100%);transition:transform .45s var(--ease),border-color .3s}
+.js header.home.scrolled,.js header.home:focus-within{transform:none}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:var(--s-2) var(--s-6);min-height:var(--header-h);flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:600;font-size:18px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding-block:var(--s-2)}
+.brand:hover{color:var(--accent)}
+nav{display:flex;flex-wrap:wrap;align-items:center;gap:0 var(--s-1)}
+nav a{position:relative;color:var(--muted);text-decoration:none;font-size:15px;padding:var(--s-3) var(--s-3);transition:color .2s}
+nav a:hover{color:var(--ink)}
+nav a.active{color:var(--ink)}
+nav a.active::after{content:"";position:absolute;left:var(--s-3);right:var(--s-3);bottom:var(--s-2);height:1px;background:var(--rule)}
+.lang{margin-left:var(--s-2);border:1px solid var(--field);border-radius:var(--radius);padding:var(--s-1) var(--s-3)!important;font-weight:600;color:var(--ink)!important}
+.lang:hover{background:var(--surface)}
+
+/* ---------- Hero: the portrait before the three Moscow addresses ---------- */
+.hero{position:relative;isolation:isolate;overflow:hidden;min-height:100svh;padding-block:var(--s-4) var(--s-8);text-align:center}
+/* two equal views meet on the axis behind the figure and run off the top and sides of the window */
+.city{position:absolute;z-index:-1;top:-13svh;left:50%;transform:translateX(-50%);width:max(130vw,190svh);display:flex;justify-content:center;pointer-events:none}
+.city img{display:block;width:54%;height:auto;max-width:none;flex:none;animation:hero-fade 1.6s ease both}
+.city-b{margin-left:-8%}
+.hero-stage{display:grid;justify-items:center}
+/* bust crop: the box shows the top of the full-length file and the chest melts into the paper */
+.portrait{margin:0;width:clamp(260px,60svh,560px);aspect-ratio:1/.86;overflow:hidden;-webkit-mask-image:linear-gradient(#000 72%,transparent);mask-image:linear-gradient(#000 72%,transparent);animation:hero-rise 1.1s var(--ease) both}
+.portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 10%}
+.hero-copy{display:grid;justify-items:center;gap:var(--s-4);margin-top:calc(var(--s-4) * -1);position:relative;min-width:0}
+.hero-copy>*{animation:hero-rise .9s var(--ease) .45s both}
+.hero-copy>.lead{animation-delay:.6s}
+.hero-copy>.cta{animation-delay:.75s}
+.hero-copy>.hero-mark{display:flex;align-items:center;gap:var(--s-4);font-family:var(--display);font-weight:600;font-size:clamp(14px,1.3vw,18px);letter-spacing:.42em;text-indent:.42em;text-transform:uppercase;color:var(--gold);animation:hero-gather 1.4s var(--ease) .25s both}
+.hero-mark::before,.hero-mark::after{content:"";width:clamp(28px,7vw,96px);height:1px;background:var(--rule)}
+@keyframes hero-fade{from{opacity:0;scale:1.04}}
+@keyframes hero-rise{from{opacity:0;translate:0 24px}}
+@keyframes hero-gather{from{opacity:0;letter-spacing:.9em}}
+@supports (animation-timeline:scroll()){
+  /* the buildings leave slower than the figure */
+  .city{animation:hero-drift linear both;animation-timeline:scroll(root);animation-range:0 100svh}
+  @keyframes hero-drift{to{translate:0 14svh}}
+}
+#hero-title{display:grid;gap:var(--s-2);justify-items:center}
+.h1-name{font-size:clamp(44px,5.2vw,76px);font-weight:500;line-height:1.02;letter-spacing:-.01em}
+.h1-dates{font-size:clamp(22px,2.2vw,30px);font-weight:500;color:var(--muted);font-variant-numeric:lining-nums tabular-nums}
+.lead{font-size:var(--t-lead);color:var(--muted);max-width:52ch}
+.cta{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s-3);margin-top:var(--s-1)}
+.credit{font-size:var(--t-small);color:var(--muted);line-height:1.5;max-width:var(--measure);margin-top:var(--s-3)}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;max-width:100%;align-items:center;justify-content:center;gap:var(--s-2);min-height:48px;padding:0 var(--s-5);border:1px solid transparent;border-radius:var(--radius);font:600 15px/1.2 var(--body);text-decoration:none;text-align:center;transition:background-color .2s,border-color .2s,color .2s}
+.btn-brass{background:var(--accent);color:var(--on-accent)}
+.btn-brass:hover{background:var(--accent-hi);color:var(--on-accent)}
+.btn-ghost{border-color:var(--field);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--ink);color:var(--ink);background:var(--surface)}
+.btn:active{transform:translateY(1px)}
+
+/* ---------- Sections ---------- */
+section.block{padding-block:var(--s-9)}
+.staff{display:none}
+.section-head{display:flex;flex-direction:column;gap:var(--s-3);max-width:var(--measure);margin-bottom:var(--s-7)}
+.section-head .crumb{order:-1}
+.section-head .eyebrow{order:2}
+.section-head p{order:3;color:var(--muted)}
+.eyebrow{font-size:var(--t-lead);font-family:var(--display);font-style:italic;font-weight:500;color:var(--gold);line-height:1.3}
+.note{font-size:var(--t-small);color:var(--muted)}
+section.block p{max-width:var(--measure)}
+.about > div > h3,.r-head h3,.insight h3{overflow-wrap:break-word;hyphens:auto}
+.crumb{display:inline-flex;gap:var(--s-2);align-items:center;font-size:var(--t-small);color:var(--muted);text-decoration:none;margin-bottom:var(--s-4)}
+.crumb:hover{color:var(--accent)}
+.page-title{font-size:clamp(44px,5.6vw,72px);letter-spacing:-.01em}
+
+/* Reveal on scroll: hidden only when the script adds .pre */
+.reveal.pre{opacity:.001;transform:translateY(var(--s-4))}
+.reveal{transition:opacity .8s ease,transform .8s var(--ease)}
+
+/* ---------- Catalogue: a ruled index, not tiles ---------- */
+.tools{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:var(--s-4);margin-bottom:var(--s-4)}
+label{font-size:var(--t-small);font-weight:600;color:var(--ink)}
+input,select{width:100%;display:block;margin-top:var(--s-2);min-height:48px;padding:0 var(--s-4);border:1px solid var(--field);border-radius:var(--radius);background:var(--surface);color:var(--ink);font:inherit;font-size:16px;font-weight:400;transition:border-color .2s}
+input::placeholder{color:var(--muted)}
+input:hover,select:hover{border-color:var(--ink)}
+input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-color:var(--field)}
+input:disabled,select:disabled{opacity:.6;cursor:not-allowed}
+.count{margin-block:var(--s-5) var(--s-4);font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);border-top:1px solid var(--ink)}
+.card{position:relative;display:grid;grid-template-columns:180px minmax(0,1fr) auto;gap:var(--s-2) var(--s-6);padding:var(--s-5) var(--s-3);border-bottom:1px solid var(--line);transition:background-color .2s;min-width:0}
+.card:hover{background:var(--surface)}
+.card .tag{grid-column:1;grid-row:1 / span 2;padding-top:var(--s-1)}
+.card h3{grid-column:2;font-size:24px}
+.card p{grid-column:2;color:var(--muted);font-size:16px;max-width:var(--measure)}
+.card a{grid-column:3;grid-row:1 / span 2;align-self:start;padding-top:var(--s-1);font-weight:600;font-size:15px;white-space:nowrap;text-decoration:none}
+.card a::after{content:"";position:absolute;inset:0}
+.card:hover a{text-decoration:underline}
+.tag{font-size:15px;color:var(--gold);font-weight:500}
+.empty{padding:var(--s-5);border:1px dashed var(--field);color:var(--muted);margin-top:var(--s-4)}
+
+/* ---------- Listen: a band ---------- */
+#listen{background:var(--band)}
+.listen{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-4);max-width:var(--measure)}
+.listen > div{display:grid;gap:var(--s-4);min-width:0}
+.listen p{color:var(--muted)}
+.eq{display:none}
+
+/* ---------- Explore: four doors ---------- */
+.explore-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--ink)}
+.explore-card{position:relative;display:flex;flex-direction:column;gap:var(--s-2);padding:var(--s-6) var(--s-6) var(--s-6) 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--muted);transition:color .2s}
+.explore-card:nth-child(odd){padding-right:var(--s-7);border-right:1px solid var(--line)}
+.explore-card:nth-child(even){padding-left:var(--s-7)}
+.explore-card b{order:1;font-family:var(--display);font-size:32px;font-weight:600;line-height:1.1;color:var(--ink)}
+.explore-card .eyebrow{order:2;margin:0;font-size:18px}
+.explore-card > span:not(.eyebrow){order:3}
+.explore-card i{display:none}
+.explore-card:hover b{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.15em}
+
+/* ---------- Biography ---------- */
+.bio{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:var(--s-8);align-items:start}
+.bio-text{display:grid;gap:var(--s-4);min-width:0;max-width:var(--measure)}
+.bio-text p:first-child::first-letter{font-family:var(--display);float:left;font-size:72px;line-height:.8;padding:var(--s-2) var(--s-2) 0 0;color:var(--gold)}
+.timeline{list-style:none;padding:0;margin:0;display:grid;gap:var(--s-5);border-left:1px solid var(--rule);min-width:0}
+.timeline li{position:relative;padding-left:var(--s-5)}
+.timeline li::before{content:"";position:absolute;left:-4px;top:12px;width:7px;height:7px;background:var(--rule);transform:rotate(45deg)}
+.timeline strong{display:block;font-family:var(--display);font-size:24px;font-weight:600;color:var(--gold);line-height:1.2;font-variant-numeric:lining-nums tabular-nums}
+.timeline span{color:var(--muted);font-size:16px}
+
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--ink);margin-bottom:var(--s-8)}
+.facts > div{padding:var(--s-5) var(--s-5) var(--s-5) 0;display:grid;gap:var(--s-1);align-content:start}
+.facts > div + div{padding-left:var(--s-5);border-left:1px solid var(--line)}
+.facts b{font-family:var(--display);font-weight:600;font-size:clamp(24px,2.6vw,32px);line-height:1.1;color:var(--gold);font-variant-numeric:lining-nums tabular-nums}
+.facts span{font-size:var(--t-small);color:var(--muted);line-height:1.45}
+.chapters{display:grid;margin-bottom:var(--s-8)}
+.chapter{display:grid;grid-template-columns:200px minmax(0,1fr);gap:var(--s-6);padding-block:var(--s-7);border-top:1px solid var(--line)}
+.chapter:first-child{border-top:0;padding-top:0}
+.ch-mark{display:grid;gap:var(--s-1);align-content:start;position:sticky;top:calc(var(--header-h) + var(--s-5));align-self:start}
+.ch-years{font-family:var(--display);font-size:32px;font-weight:600;line-height:1.05;color:var(--gold);font-variant-numeric:lining-nums tabular-nums}
+.ch-place{font-size:15px;color:var(--muted)}
+.ch-photo{margin:var(--s-4) 0 0;display:grid;gap:var(--s-2);width:100%}
+.ch-photo .mat{background:var(--surface);padding:var(--s-3);border:1px solid var(--line);outline:1px solid var(--rule);outline-offset:calc(var(--s-1) * -1)}
+.ch-photo img{display:block;width:100%;height:auto}
+.ch-photo figcaption{font-size:13px;line-height:1.45;color:var(--muted)}
+.ch-body{display:grid;gap:var(--s-4);align-content:start;max-width:var(--measure);min-width:0}
+.ch-body h3{font-size:32px}
+.insight{border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding-block:var(--s-6);margin-bottom:var(--s-8);display:grid;gap:var(--s-4)}
+.insight h3{font-size:36px}
+.insight ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:var(--s-4) var(--s-6)}
+.insight li{position:relative;padding-left:var(--s-5);color:var(--muted)}
+.insight li::before{content:"";position:absolute;left:2px;top:.7em;width:6px;height:6px;background:var(--rule);transform:rotate(45deg)}
+.insight li b{color:var(--ink)}
+.timeline-wrap{display:grid;gap:var(--s-5);margin-bottom:var(--s-6)}
+.timeline-wrap > h3{font-size:32px}
+.timeline-wrap .timeline{grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:var(--s-5) var(--s-6);border-left:0}
+.timeline-wrap .timeline li{border-left:1px solid var(--rule)}
+.conflicts{border:1px solid var(--field);padding:0 var(--s-5);background:var(--surface)}
+.conflicts summary{cursor:pointer;padding-block:var(--s-4);font-weight:600;color:var(--ink)}
+.conflicts ul{margin:0 0 var(--s-5);padding-left:var(--s-5);display:grid;gap:var(--s-3);color:var(--muted);font-size:16px}
+.conflicts b{color:var(--ink)}
+
+/* ---------- America ---------- */
+.usa-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:var(--s-7);align-items:start}
+.usa-text{display:grid;gap:var(--s-4);min-width:0;max-width:var(--measure)}
+.usa-text h3{margin-top:var(--s-2)}
+.editions{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--ink);position:sticky;top:calc(var(--header-h) + var(--s-5))}
+.editions li{display:grid;grid-template-columns:80px minmax(0,1fr);gap:var(--s-4);padding-block:var(--s-3);border-bottom:1px solid var(--line)}
+.editions b{font-family:var(--display);font-size:24px;font-weight:600;color:var(--gold);line-height:1.2;font-variant-numeric:lining-nums tabular-nums}
+.editions span{font-size:16px;color:var(--muted)}
+
+/* ---------- Schools ---------- */
+.school-note{max-width:var(--measure);margin-bottom:var(--s-7)}
+.school-note b{color:var(--ink)}
+.lineages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-7);margin-bottom:var(--s-6)}
+.lineage{min-width:0}
+.lineage > h3{font-size:36px;margin-bottom:var(--s-5);padding-bottom:var(--s-3);border-bottom:1px solid var(--ink)}
+.gen{list-style:none;margin:0;padding:0;display:grid;gap:var(--s-5);position:relative}
+.gen::before{content:"";position:absolute;left:7px;top:var(--s-3);bottom:var(--s-3);width:1px;background:var(--rule)}
+.node{position:relative;padding-left:var(--s-6);display:grid;gap:var(--s-1)}
+.node::before{content:"";position:absolute;left:3px;top:10px;width:9px;height:9px;background:var(--paper);border:1px solid var(--rule);transform:rotate(45deg)}
+.node-key::before{background:var(--rule)}
+.node-gap::before,.node-later::before{border-style:dashed;border-color:var(--field)}
+.node b{font-family:var(--display);font-size:24px;font-weight:600;line-height:1.15;color:var(--ink)}
+.node p{font-size:16px;color:var(--muted);line-height:1.6}
+.node-years{font-size:15px;color:var(--gold);font-variant-numeric:tabular-nums}
+.pupils{font-size:15px;color:var(--ink);border-left:1px solid var(--field);padding-left:var(--s-3)}
+.pupils em{font-style:normal;color:var(--gold);font-weight:600}
+.node-pair{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-4)}
+.node-pair > div{display:grid;gap:var(--s-1);align-content:start;padding:var(--s-4);border:1px solid var(--line);background:var(--surface);min-width:0}
+.raichman{display:grid;grid-template-columns:260px minmax(0,1fr);gap:var(--s-6);padding-block:var(--s-6);border-block:1px solid var(--ink)}
+.r-head{display:grid;gap:var(--s-2);align-content:start}
+.r-head h3{font-size:36px}
+.r-body{display:grid;gap:var(--s-4);min-width:0;max-width:var(--measure)}
+.r-body p{color:var(--muted)}
+.r-body b{color:var(--ink)}
+
+/* ---------- Concertos ---------- */
+.conc-intro{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-7);margin-bottom:var(--s-6)}
+.conc-intro > div{display:grid;gap:var(--s-4);align-content:start;min-width:0}
+.conc-intro p{color:var(--muted)}
+.table-scroll{overflow-x:auto;border-top:1px solid var(--ink);background:var(--surface);margin-bottom:var(--s-4)}
+.conc{width:100%;min-width:640px;border-collapse:collapse;font-size:16px}
+.conc th{text-align:left;font-size:var(--t-small);color:var(--muted);font-weight:600;padding:var(--s-3) var(--s-4);border-bottom:1px solid var(--line)}
+.conc td{padding:var(--s-3) var(--s-4);border-bottom:1px solid var(--line);vertical-align:top;color:var(--muted)}
+.conc tr:last-child td{border-bottom:0}
+.conc td:first-child{font-family:var(--display);font-size:28px;font-weight:600;color:var(--gold);width:56px;font-variant-numeric:lining-nums tabular-nums}
+.conc td:nth-child(2){color:var(--ink);white-space:nowrap}
+.conc td:nth-child(3){white-space:nowrap;font-variant-numeric:tabular-nums}
+.conc tbody tr:hover td{background:var(--tint)}
+.chip{display:inline-block;margin-left:var(--s-2);padding:0 var(--s-2);border:1px solid var(--rule);border-radius:var(--radius);font-size:var(--t-small);font-weight:600;color:var(--gold);white-space:nowrap}
+.st{display:inline-block;margin-left:var(--s-2);padding:0 var(--s-2);border:1px solid currentColor;border-radius:var(--radius);font-size:var(--t-small);font-style:normal;font-weight:600;white-space:nowrap}
+.st-ok{color:var(--accent)}
+.st-no{color:var(--gold)}
+
+/* ---------- About and sources ---------- */
+.about{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-7)}
+.about > div{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-4);align-content:start;min-width:0}
+.about p{color:var(--muted)}
+.sources{margin:0;padding-left:var(--s-5);display:grid;gap:var(--s-3);color:var(--muted)}
+.sources a{overflow-wrap:anywhere}
+.sources li:has(> b:only-child){list-style:none;margin:var(--s-2) 0 0 calc(var(--s-5) * -1);color:var(--ink)}
+.sources li:target{background:var(--tint)}
+.src-group{font-weight:600;color:var(--ink);margin:var(--s-4) 0 var(--s-2)}
+.ref{font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap}
+.ref a{text-decoration:none}
+.ref a:hover{text-decoration:underline}
+
+/* ---------- Teachers and pupils (v3 additions) ---------- */
+.people-v3{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-5);margin:var(--s-6) 0}
+.person-v3{padding:var(--s-5);border:1px solid var(--line);background:var(--surface)}
+.person-v3 h3{font-size:26px}
+.person-v3 dt{font-weight:600;margin-top:var(--s-3)}
+.person-v3 dd{margin:var(--s-1) 0;color:var(--muted);overflow-wrap:break-word}
+.lineage-v3{padding:0;list-style:none;display:grid;gap:var(--s-2);margin-block:var(--s-4)}
+.lineage-v3 li{padding:var(--s-3) var(--s-4);border:1px solid var(--line);background:var(--surface)}
+.lineage-v3 .provisional{border-style:dashed;border-color:var(--field)}
+.extra-tools-v3{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-4);margin:var(--s-4) 0}
+.extra-tools-v3 label{display:grid;gap:0}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid var(--line);padding-block:var(--s-6) var(--s-7);color:var(--muted);font-size:15px}
+.foot{display:flex;justify-content:space-between;gap:var(--s-4);flex-wrap:wrap;align-items:center}
+.foot .brand{font-size:16px}
+.totop{position:fixed;right:calc(var(--s-4) + env(safe-area-inset-right,0px));bottom:calc(var(--s-4) + env(safe-area-inset-bottom,0px));z-index:25;width:48px;height:48px;border:1px solid var(--field);border-radius:var(--radius);background:var(--surface);color:var(--ink);font-size:20px;cursor:pointer;transition:opacity .3s,transform .3s}
+.js .totop{opacity:0;transform:translateY(var(--s-3));pointer-events:none}
+.js .totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{border-color:var(--ink)}
+.totop:active{transform:translateY(1px)}
+
+/* ---------- Responsive ---------- */
+@media(max-width:980px){
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts > div:nth-child(3){padding-left:0;border-left:0}
+  .facts > div:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media(max-width:820px){
+  .bio,.about,.usa-grid,.conc-intro,.lineages{grid-template-columns:minmax(0,1fr);gap:var(--s-6)}
+  .chapter{grid-template-columns:minmax(0,1fr);gap:var(--s-3)}
+  .ch-mark{position:static;display:flex;gap:var(--s-3);align-items:baseline;flex-wrap:wrap}
+  .ch-photo{order:3;width:min(240px,60vw)}
+  .editions{position:static}
+  .raichman{grid-template-columns:minmax(0,1fr);gap:var(--s-4)}
+  .explore-grid{grid-template-columns:minmax(0,1fr)}
+  .explore-card:nth-child(odd),.explore-card:nth-child(even){padding:var(--s-5) 0;border-right:0}
+  .card{grid-template-columns:minmax(0,1fr);gap:var(--s-2)}
+  .card .tag,.card h3,.card p,.card a{grid-column:1;grid-row:auto}
+  .people-v3,.extra-tools-v3{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:620px){
+  body{font-size:16px}
+  .hero{padding-block:var(--s-3) var(--s-7)}
+  .city{width:190vw;top:-2svh}
+  .portrait{width:88vw}
+  .btn{padding:0 var(--s-4);font-size:14px}
+  .about h3{font-size:24px}
+  section.block{padding-block:var(--s-8)}
+  .bar{justify-content:center;padding-block:var(--s-2)}
+  nav{justify-content:center}
+  nav a{padding:var(--s-2) var(--s-2);font-size:14px}
+  .tools{grid-template-columns:minmax(0,1fr)}
+  .facts{grid-template-columns:minmax(0,1fr)}
+  .facts > div,.facts > div + div{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+  .facts > div:first-child{border-top:0}
+  .node-pair{grid-template-columns:minmax(0,1fr)}
+  .table-scroll{overflow:visible;background:none}
+  .conc{min-width:0;display:block}
+  .conc thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .conc tbody{display:grid}
+  .conc tr{display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:var(--s-3);padding:var(--s-4) 0;border-bottom:1px solid var(--line)}
+  .conc td{display:block;padding:0;border:0}
+  .conc td:first-child{grid-row:span 3;width:auto;font-size:32px;line-height:1}
+  .conc td:nth-child(2){white-space:normal}
+  .conc td:nth-child(3){font-size:var(--t-small);color:var(--gold);margin-bottom:var(--s-1)}
+  .conc td:nth-child(4){font-size:15px}
+  .person-v3{padding:var(--s-4)}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal.pre{opacity:1;transform:none}
+}
+
+/* ---------- Страницы-досье школ (moscow.html, leningrad.html) ---------- */
+.warn{color:var(--gold);font-weight:700;cursor:help}
+.dossier-tree{border:1px solid var(--line);background:var(--surface);border-radius:var(--radius);padding:var(--s-5) var(--s-6);margin-bottom:var(--s-7);overflow-x:auto}
+.dossier-tree h3{margin-bottom:var(--s-3)}
+.tree,.tree ul{list-style:none;margin:0;padding-left:22px;border-left:1px solid var(--line)}
+.tree{border-left:0;padding-left:0}
+.tree li{position:relative;padding:4px 0 4px 14px;font-size:15px;color:var(--muted)}
+.tree ul li::before{content:"";position:absolute;left:-22px;top:15px;width:30px;border-top:1px solid var(--line)}
+.tree b{color:var(--ink)}
+.facts-list{margin:0;padding-left:20px;display:grid;gap:6px;color:var(--muted)}
+.sub-h{font-family:var(--display);font-weight:500;font-size:var(--t-title);margin:var(--s-7) 0 var(--s-4)}
+.persons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-4);margin-bottom:var(--s-7)}
+.person{border:1px solid var(--line);background:var(--surface);border-radius:var(--radius);padding:var(--s-5);display:grid;gap:var(--s-2);align-content:start;min-width:0}
+.person h4{font-family:var(--display);font-size:24px;font-weight:600;margin:0;color:var(--ink)}
+.person ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:15px;color:var(--muted)}
+.two-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-7);margin:var(--s-6) 0}
+.two-col > div{min-width:0;display:grid;gap:var(--s-3);align-content:start}
+.plain-list{padding-left:18px}
+.conc.plain{min-width:560px}
+.conc.plain td,.conc.plain td:nth-child(2),.conc.plain td:nth-child(3){white-space:normal}
+.conc.plain td:first-child{font-family:var(--body);font-size:14px;font-weight:600;color:var(--ink);width:auto;white-space:nowrap}
+.school-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-4);margin-bottom:var(--s-6)}
+@media(max-width:820px){.persons,.two-col,.school-links{grid-template-columns:1fr}}
+@media(max-width:620px){
+  .conc.plain{min-width:0}
+  .conc.plain td:first-child{white-space:normal;font-size:15px;color:var(--gold)}
+  .conc.plain td:nth-child(3){color:var(--muted);font-size:14px}
+  .tree ul{padding-left:12px}.tree ul li::before{left:-12px;width:18px}
+  .dossier-tree{padding:var(--s-4)}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержимому</a>
+<header id="top-bar"><div class="wrap bar">
+  <a href="index.html" class="brand" aria-label="Blazhevich — на главную">Blazhevich</a>
+  <nav aria-label="Основная навигация"><a href="index.html">Ноты</a><a href="index.html">Слушать</a><a href="biography.html">Биография</a><a href="usa.html">В США</a><a href="schools.html">Школы</a><a href="concertos.html">Концерты</a><a href="about.html">О проекте</a><a class="lang" href="en/index.html" hreflang="en" lang="en">EN</a></nav>
+</div></header>
+<main id="main">
+<section id="moscow" class="block"><div class="wrap">
+  <div class="staff" aria-hidden="true"></div>
+  <div class="section-head reveal"><a class="crumb" href="index.html">← Главная</a><h1 class="page-title">Московская тромбонная школа</h1><div class="eyebrow">Досье · Борк → Блажевич → Щербинин</div><p>Подробное досье о преемственности московской школы: от первых тромбонистов Большого театра до учеников Щербинина и гнесинской ветви. Собрано 10 ноября 2026 года по открытым источникам и архивным описям. Знаком <span class="warn">⚠</span> отмечены расходящиеся или непроверенные сведения.</p></div>
+
+  <div class="dossier-tree reveal" role="img" aria-label="Генеалогия московской школы">
+    <h3>Генеалогия школы</h3>
+    <ul class="tree">
+      <li><b>Витнебен</b> — тромбон и офиклеид, оркестр Большого театра (офиклеид с 1846; до пожара 1853)
+        <ul><li><b>Х. И. Борк</b> (1832–1916) — класс тромбона, тубы и ударных МГК с 1866; 1-й тромбон Большого театра
+          <ul><li><b>В. М. Блажевич</b> (1881–1942) — профессор МГК 1920–1942, солист Большого театра 1906–1928
+            <ul>
+              <li><b>В. А. Щербинин</b> (1896–1963) — профессор МГК, солист Большого театра 1926–1944
+                <ul>
+                  <li>В. Б. Баташов (р. 1937) — I премия, Женева 1958; профессор МГК</li>
+                  <li>К. М. Ладилов (1927–1983) — солист Госоркестра СССР; Гнесинский институт</li>
+                  <li>М. Н. Турусин (р. 1924) — солист Большого театра; профессор МГК (с 1990)</li>
+                  <li>Н. И. Миронов (1928–2017) — II премия, Женева 1958</li>
+                  <li>М. М. Зейналов (1917–1993) — бас-тромбон Большого театра; профессор МГК</li>
+                  <li>М. А. Измалков (р. 1933) — солист оркестра Московской филармонии</li>
+                  <li>А. Жуковский, К. Морейнис; тубисты Досадин, Мачехо, Аничкин, Кузьмичёв и др.</li>
+                </ul></li>
+              <li><b>Б. П. Григорьев</b> (1906 — ?) — солист Большого театра 1929–1960; с 1944 — первый педагог класса тромбона Гнесинского института
+                <ul><li>Гнесинская ветвь: К. М. Ладилов (с 1962/64) → Н. Г. Филиппов (с 1983), В. А. Лебедев (с 1989) → В. Х. Школьник и О. А. Макаришин (с 2001), А. Н. Морозов, И. В. Геллер (2000-е)</li></ul></li>
+            </ul></li></ul></li></ul></li>
+    </ul>
+    <p class="note">Две параллельные ветви: консерваторская (Щербинин → Баташов, Турусин, Зейналов) и гнесинская (Григорьев → Ладилов → Филиппов → Школьник, Макаришин). Корень иностранный: Витнебен и Борк — немцы, Блажевич в анкете 1928 года указал себя литовцем, Щербинин — первый русский во главе школы.</p>
+  </div>
+
+  <div class="chapters">
+    <article class="chapter reveal" id="m-origins">
+      <div class="ch-mark"><span class="ch-years">XV–XIX вв.</span><span class="ch-place">Истоки</span></div>
+      <div class="ch-body">
+        <h3>Как тромбон попал в Россию</h3>
+        <p>Предок тромбона — сакбут (Бургундия, XV век). К XVII веку инструмент приобрёл почти современный вид; в первой половине XIX века расцвело сольное исполнительство (Ф. Бельке, К. Квайзер, концертино Ф. Давида).</p>
+        <p>В России XVIII века тромбон воспринимался как «церковный, католический» инструмент; низкую медь в оркестрах часто заменял роговой оркестр. По одному исследованию, даже в петербургском исполнении «Сотворения мира» Гайдна (1801) партии тромбонов играли на рогах <span class="warn" title="Первоисточник не проверен">⚠</span>. К изданию Реквиема Козловского (1826) роговой оркестр сменяется группой из трёх тромбонов — с этого времени тромбон в России становится штатным. Своих исполнителей на медных долго не было: музыкантов вербовали за границей.</p>
+      </div>
+    </article>
+    <article class="chapter reveal" id="m-bork">
+      <div class="ch-mark"><span class="ch-years">1859–1916</span><span class="ch-place">Борк</span></div>
+      <div class="ch-body">
+        <h3>Христофор Борк: с него начинается московская школа</h3>
+        <p>Христофор Иванович Борк (Christoph Borck; 7 июля 1832, Хафельберг, Пруссия — 8 (21) марта 1916, Москва). Хронология по личному делу в РГАЛИ (ф. 659, оп. 3, ед. хр. 454) и статье А. И. Иванова (2021):</p>
+        <ul class="facts-list">
+          <li><b>Декабрь 1859</b> — прошение о зачислении «прусского подданного» в оркестр Большого театра для исполнения партии офиклеида; отказано.</li>
+          <li><b>28.04.1861</b> — разрешение войти в состав оркестра уже как тромбонисту; 31.10.1861 — присяга на российское подданство.</li>
+          <li><b>1861–1906</b> — служба в Большом театре: до 1882 года 1-й тромбон балетного оркестра, затем и оперного; с 1867 года по болезни переведён в литавристы, с 1889-го играл только на ударных.</li>
+          <li><b>1866</b> — в Московской консерватории открыт класс тромбона и тубы; первые педагоги медных — артисты Большого театра М. Бартольд (валторна), Ф. Рихтер (труба), Х. Борк (тромбон).</li>
+          <li><b>01.01.1886</b> — орден Св. Станислава III степени.</li>
+        </ul>
+        <p><span class="warn">⚠</span> Расхождения: Википедия и словарь Болотина дают звание сверхштатного профессора в 1875 году и штатного в 1886-м; по РГАЛИ (Иванов) — сверхштатный профессор II степени с 1883 года, I степени с 1906-го. Сайт консерватории указывает годы класса 1875–1916.</p>
+        <p>Борк составил «Программу класса тромбона (Выдвижной тромбон В)» — рукопись в РГАЛИ (ф. 2099, оп. 1, л. 121–125), первый в России систематический курс игры на тромбоне. Тогда на специальность отводился один академический час в неделю, а в классе бывало по два-три ученика. Среди учеников — В. М. Блажевич и В. Гущин; словарь Болотина добавляет К. М. Купинского, В. В. Держановского, С. Диева, И. Пиорковского, А. Соболевского, С. Чеснокова <span class="warn" title="Список, кроме Блажевича и Гущина, — по вторичным источникам">⚠</span>.</p>
+      </div>
+    </article>
+    <article class="chapter reveal" id="m-blazhevich">
+      <div class="ch-mark"><span class="ch-years">1928</span><span class="ch-place">Анкета</span></div>
+      <div class="ch-body">
+        <h3>Блажевич по собственной анкете</h3>
+        <p>По анкете, заполненной Блажевичем в 1928 году при уходе из театра (личное дело, копия в Музее имени Глинки): родился 3 августа 1881 года в Смоленской губернии, Катынская волость, имение Тригубовка; литовец, римско-католического вероисповедания, сын землевладельца-арендатора; читает, пишет и говорит по-польски, по-литовски и по-немецки. В 1900 году поступил в класс Борка, в 1905-м окончил консерваторию со званием свободного художника; первый тромбон Большого театра в 1906–1928 годах. В 1909–1911 годах служил музыкантом в музыкальной команде Александровского военного училища, в 1917–1918 годах — смотрителем 9-го Сводно-эвакуационного госпиталя. Во время войны отказался от эвакуации вместе с консерваторией и остался в Москве.</p>
+        <p><span class="warn">⚠</span> В анкете Блажевич называет себя литовцем, а по Харламову его отец происходил из польских дворян.</p>
+        <p>В фонде Блажевича в Музее имени Глинки хранится недатированный «Список студентов класса проф. Блажевича»: сначала тринадцать тромбонистов, среди них В. А. Щербинин и Б. П. Григорьев, затем тубисты; у каждого — посещаемость в процентах и отзыв профессора, внизу подпись «Профессор /Блажевич/».</p>
+      </div>
+    </article>
+  </div>
+
+  <h3 class="sub-h">Немецкие и австрийские музыканты низкой меди XIX века</h3>
+  <div class="table-scroll reveal" tabindex="0" role="region" aria-label="Музыканты низкой меди XIX века">
+    <table class="conc plain">
+      <thead><tr><th scope="col">Имя</th><th scope="col">Происхождение</th><th scope="col">Служба</th></tr></thead>
+      <tbody>
+        <tr><td>Витнебен</td><td>—</td><td>Группа тромбонов Большого театра до 1853 года; офиклеид с 1846-го.</td></tr>
+        <tr><td>Х. И. Борк (1832–1916)</td><td>Хафельберг, Пруссия</td><td>Большой театр с 1859/1861; 1-й тромбон до 1867, литавры до 1906; МГК с 1866.</td></tr>
+        <tr><td>Густав Заальборн (1839–1917)</td><td>Прусский подданный</td><td>С 1857 — императорские театры Петербурга; в 1861 переведён в Москву; в 1882 перешёл на тубу.</td></tr>
+        <tr><td>Губерт Матвей (Яковлевич)</td><td>Австрийский подданный</td><td>Тубист Большого театра с 1882 по 1897 год.</td></tr>
+        <tr><td>В. А. Шенекерль (Wilhelm Schönekerl)</td><td>Брауншвейг</td><td>С 1861 — в Петербурге «для игры на офиклейде»; с 1865 — тубист.</td></tr>
+        <tr><td>И. В. Липаев</td><td>—</td><td>Многолетний тромбонист Большого театра, автор рукописи «Былое оркестра Большого театра» (1924).</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note reveal">По личным делам Московской конторы императорских театров (РГАЛИ) и книге А. Левашкина «Картинки из истории тубы в России».</p>
+
+  <h3 class="sub-h">Персоналии</h3>
+  <div class="persons">
+    <article class="person reveal" id="p-shcherbinin">
+      <span class="node-years">18.01.1896, Майкоп — 05.06.1963, Москва</span>
+      <h4>Владимир Арнольдович Щербинин</h4>
+      <p>Легенда московской школы, основатель «щербининской методики».</p>
+      <ul>
+        <li>1914–1918 — учился и играл в полковом оркестре; с 1918 — в РККА, музыкант и капельмейстер.</li>
+        <li>Московская консерватория, класс Блажевича: 1924–1930 или экстерном до 1947 <span class="warn" title="Автобиография в РГАЛИ и словарь Болотина расходятся">⚠</span>.</li>
+        <li>1926–1944 — солист оркестра Большого театра; 1926–1932 — участник Персимфанса.</li>
+        <li>1929–1940 — руководил духовым оркестром ДК Московского автозавода (АМО, позднее ЗиЛ) — «кузницей музыкантов».</li>
+        <li>1938–1941 — одновременно солист Государственного духового оркестра СССР; 1943–1951 — его директор и художественный руководитель; с 1953 — директор оркестра Московской филармонии.</li>
+        <li>1935 — лауреат 2-го Всесоюзного конкурса музыкантов-исполнителей; 02.06.1937 — заслуженный артист РСФСР.</li>
+        <li>Педагогика: с 1938 — МГК, с 1939 доцент, с 1947 до конца жизни профессор по классу тромбона и тубы; в 1950–1952 — доцент Горьковской консерватории (там у него учился Ладилов).</li>
+        <li>1947 — сводный духовой оркестр из 1200 человек к 800-летию Москвы и 30-летию Октября.</li>
+        <li>Методика: «специальная система ежедневных занятий» (Р. Маслов). Правило класса: ноты ученик выучивает сам, педагог работает над формой, фразой, нюансами.</li>
+        <li>Награды: два ордена «Знак Почёта» (1946, 1959), медаль «За трудовую доблесть» (1949). Похоронен на Новодевичьем кладбище.</li>
+        <li>Перелагатель: обработки итальянской и русской музыки для тромбона и фортепиано, в том числе виолончельная соната Рахманинова.</li>
+      </ul>
+    </article>
+    <article class="person reveal" id="p-ladilov">
+      <span class="node-years">09.02.1927 — 13.02.1983</span>
+      <h4>Константин Михайлович Ладилов</h4>
+      <ul>
+        <li>1952 — окончил Горьковскую консерваторию в классе Щербинина; аспирантура МГК (1955 или 1956 <span class="warn">⚠</span>).</li>
+        <li>I премия Международного конкурса в Бухаресте (1952 или 1953 <span class="warn">⚠</span>).</li>
+        <li>С 1955/1957 <span class="warn">⚠</span> до 1983 — солист и концертмейстер группы тромбонов Госоркестра СССР под управлением Светланова.</li>
+        <li>Педагогика: Горьковское училище 1949–1959, Горьковская консерватория 1952–1964, Гнесинский институт с 1962/1964 <span class="warn">⚠</span>. На вступительных прослушиваниях просил гамму фа мажор в четыре октавы.</li>
+        <li>Ученики: В. Х. Школьник, И. Боголепов, И. Мордовский, В. И. Федоринов и др. Концерт для тромбона А. А. Нестерова написан для Ладилова и посвящён ему.</li>
+        <li>Заслуженный артист РСФСР (1978).</li>
+      </ul>
+    </article>
+    <article class="person reveal" id="p-batashov">
+      <span class="node-years">р. 07.06.1937, Раменское</span>
+      <h4>Виктор Борисович Баташов (Баташев)</h4>
+      <ul>
+        <li>1956 — училище при МГК; 1960 — МГК, класс Щербинина; 1962 — ассистентура-стажировка.</li>
+        <li>1958 — I премия Международного конкурса в Женеве: первый советский лауреат первой премии международного конкурса духовиков в «капиталистической стране»; 1962 — III премия «Пражской весны».</li>
+        <li>1959–2001 — солист Большого симфонического оркестра (ныне БСО имени Чайковского), концертмейстер группы тромбонов.</li>
+        <li>С 1963 преподаёт в МГК, профессор с 1995; заслуженный артист РСФСР (1981).</li>
+        <li>Ключевые исполнения: соло в «Траурно-триумфальной» симфонии Берлиоза с БСО под управлением Г. Рождественского (1968); «Зимнее концертино» Мийо; «Звук и отзвук» Шнитке.</li>
+        <li>Ученики: В. Киселёв, А. Павлов, Д. Толпегов, А. Жиганков, К. Александров, Д. Шаров, М. Старшинов и др.</li>
+      </ul>
+    </article>
+    <article class="person reveal" id="p-turusin">
+      <span class="node-years">р. 1924</span>
+      <h4>Михаил Николаевич Турусин</h4>
+      <ul>
+        <li>Училище при МГК 1944–1947; МГК 1947–1952, класс Щербинина.</li>
+        <li>Солист оркестра Большого театра 1948–1959 и 1963–1975; Симфонический оркестр радио и телевидения 1960–1963.</li>
+        <li>I премии Всемирных фестивалей молодёжи и студентов — Будапешт 1949 и Берлин 1951.</li>
+        <li>МГК с 1965 (доцент 1970, профессор 1990); составитель учебных программ по тромбону (1988, 2012).</li>
+      </ul>
+    </article>
+    <article class="person reveal" id="p-zeinalov">
+      <span class="node-years">17.02.1917, Баку — 1993</span>
+      <h4>Мамед Мирзоевич Зейналов</h4>
+      <ul>
+        <li>Азербайджанская консерватория 1937–1940; Московская консерватория, класс Щербинина, окончил в 1947 (по справочнику Черных — 1949 <span class="warn">⚠</span>).</li>
+        <li>Госоркестр СССР 1947–1949; солист (бас-тромбон) Большого театра 1949–1979; заслуженный артист РСФСР (1978).</li>
+        <li>МГК с 1963 (доцент 1978, профессор 1984).</li>
+        <li>«Школа игры на тромбоне», написанная вместе с А. Н. Седракяном (1987, переиздания 2001 и 2025), — методическое продолжение школы Щербинина.</li>
+      </ul>
+    </article>
+    <article class="person reveal" id="p-others">
+      <h4>Другие ученики Щербинина</h4>
+      <ul>
+        <li><b>Николай Иванович Миронов</b> (1928–2017) — МГК 1958, класс Щербинина; оркестр Комитета кинематографии 1956–1978; Женева 1958 — II премия: вместе с Баташовым двойной успех советской школы.</li>
+        <li><b>Михаил Акимович Измалков</b> (р. 1933) — соло на тромбоне на первом исполнении восстановленной Четвёртой симфонии Шостаковича 30.12.1961; солист оркестра Московской филармонии.</li>
+        <li><b>Александр Викторович Рыбинцев</b> (— 2008) — бас-тромбонист и бас-трубач, солист оркестра Большого театра 1979–2005; в электронном архиве театра — 23 спектакля, от «Золота Рейна» (1981) до «Золотого века» (2008).</li>
+      </ul>
+    </article>
+    <article class="person reveal" id="p-gnesin">
+      <h4>Гнесинская ветвь</h4>
+      <p>По статье О. А. Макаришина «История класса тромбона ГМПИ — РАМ имени Гнесиных».</p>
+      <ul>
+        <li><b>Борис Петрович Григорьев</b> (1906, Тверь) — солист Большого театра 1929–1960, класс Блажевича; с 1944 вёл класс тромбона и тубы в Гнесинском институте. «Гаммы, арпеджио, интервалы для тромбона» (1969) — «настольная книга тромбонистов». Ученики: Чепкой, Локалин, Досадин, Железнов, Мальцев, Левашкин, Здоров, Морейнис.</li>
+        <li><b>Николай Григорьевич Филиппов</b> (р. 1930) — концертмейстер группы тромбонов оркестра Московской филармонии 1962–1985 (Кондрашин); в Гнесинском с 1983, профессор 1995.</li>
+        <li><b>Виктор Афанасьевич Лебедев</b> (р. 1953) — Гнесинский (класс Баташова, 1984); преподавал в Гнесинском 1988–1999.</li>
+        <li><b>Владимир Хаимович Школьник</b> — Гнесинский 1978 (класс Ладилова); I премия Всесоюзного конкурса (Таллин, 1980); с 1985 — ГАСО СССР под управлением Светланова, с 1991 — концертмейстер группы тромбонов.</li>
+        <li><b>Олег Аркадьевич Макаришин</b> — Гнесинский 1997 (класс Филиппова); в Гнесинском с 2001.</li>
+        <li><b>Александр Николаевич Морозов</b> — Ленинградская консерватория (класс Венгловского); солист группы тромбонов Большого театра 1978–2013; в Гнесинском с 2004.</li>
+        <li><b>Илья Владимирович Геллер</b> — Гнесинский 1996 (класс Филиппова); CD «Penta of time».</li>
+        <li><b>Владимир Николаевич Досадин</b> (туба) — ученик Григорьева, солист БСО; с 1973 первый педагог класса тубы Гнесинского.</li>
+      </ul>
+    </article>
+  </div>
+
+  <aside class="insight reveal" aria-labelledby="m-method">
+    <h3 id="m-method">«Школа Щербинина» — что под этим понимать</h3>
+    <div class="eyebrow">Методическое наследие</div>
+    <ul>
+      <li><b>Печатной школы самого Щербинина нет.</b> Его наследие — «специальная система ежедневных занятий» и живая практика класса.</li>
+      <li><b>Продолжение линии</b> — «Школа игры на тромбоне» М. М. Зейналова и А. Н. Седракяна («Музыка», 1987; переиздания 2001 и 2025).</li>
+      <li><b>Фундамент</b> — школы и этюды Блажевича.</li>
+      <li><b>Григорьев</b> — «Гаммы, арпеджио, интервалы для тромбона» (1969), этюды, сборники оркестровых трудностей.</li>
+      <li><b>Турусин</b> — учебные программы по тромбону (1988, 2012).</li>
+    </ul>
+  </aside>
+
+  <div class="two-col reveal">
+    <div>
+      <h3>Ноты в открытом доступе</h3>
+      <ul class="sources plain-list">
+        <li><a href="https://imslp.org/wiki/Category:Blazhevich,_Vladislav">IMSLP — произведения Блажевича</a>: концерты № 2 и № 5, концертные дуэты, секвенции, этюды.</li>
+        <li><a href="https://rusneb.ru/catalog/000199_000009_004466669">НЭБ — «Школа для раздвижного тромбона», 1925</a>: оригинальное издание.</li>
+        <li><a href="https://www.classon.ru/lib/instrument/trombone/1/">classON — каталог нот для тромбона</a>.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Записи</h3>
+      <ul class="sources plain-list">
+        <li>Римский-Корсаков. Концерт для тромбона и духового оркестра, солист В. Баташов, 1972 (LP «Мелодия»): <a href="https://www.youtube.com/watch?v=Ggy0rW8XK3U">YouTube</a>.</li>
+        <li>Дискография Баташова: «Мелодия» Д 005678-9 (1959, с Н. Баташовой), С10 28467 007 (1989) — <a href="https://records.su/tag/Баташов_Виктор">records.su</a>.</li>
+        <li>Концерт Нестерова, посвящённый Ладилову: запись с Госоркестром СССР в золотом фонде Всесоюзного радио; в открытой сети не найдена.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sub-h">Источники досье</h3>
+  <ol class="sources">
+    <li><a href="https://tuba.org.ru/scherbinin.pdf">«Щербинин Владимир Арнольдович и его ученики»</a> (tuba.org.ru) — главный документ по школе, с документами РГАЛИ.</li>
+    <li>О. А. Макаришин. «История класса тромбона ГМПИ — РАМ имени Гнесиных» — Евразийский научный журнал.</li>
+    <li><a href="https://www.gnesin.ru/mediateka/metodicheskie_materialy/metodicheskie_posobiya/maslov_dukhovaya_shkola">Р. А. Маслов. «К истории московской духовой исполнительской школы»</a>.</li>
+    <li><a href="https://www.mosconsv.ru/ru/groups/11202">Кафедра медных духовых и ударных инструментов МГК</a>; <a href="https://www.mosconsv.ru/ru/person.aspx?id=9085">МГК: В. Б. Баташов</a>.</li>
+    <li>Википедия: <a href="https://ru.wikipedia.org/wiki/Щербинин,_Владимир_Арнольдович">Щербинин</a>, <a href="https://ru.wikipedia.org/wiki/Ладилов,_Константин_Михайлович">Ладилов</a>, <a href="https://ru.wikipedia.org/wiki/Филиппов,_Николай_Григорьевич">Филиппов</a>, <a href="https://ru.wikipedia.org/wiki/Борк,_Христофор_Иванович">Борк</a>.</li>
+    <li>А. И. Иванов. «Христофор Борк: из архивных источников» // Художественное образование и наука. 2021. № 1 (26). DOI 10.36871/hon.202101013.</li>
+    <li>А. Левашкин. <a href="https://tuba.org.ru/kniga9.php">«Картинки из истории тубы в России»</a>.</li>
+    <li><a href="https://archive.bolshoi.ru/entity/PERSON/3883344">Электронный архив Большого театра — А. Рыбинцев</a>.</li>
+    <li>С. В. Болотин. Энциклопедический биографический словарь музыкантов-исполнителей на духовых инструментах. М.: Радуница, 1995.</li>
+  </ol>
+  <p class="note">Досье собрано 10 ноября 2026 года по открытым источникам; архивные шифры приводятся по этим источникам, оригиналы дел не сверялись. Расхождения отмечены знаком ⚠ и не сглажены.</p>
+</div></section>
+</main>
+<footer><div class="wrap foot"><a href="index.html" class="brand">Blazhevich</a><span>Владислав Блажевич, Vladislav Blazhevich</span><a href="en/index.html" hreflang="en" lang="en">English</a></div></footer>
+<button class="totop" id="totop" type="button" aria-label="Наверх">↑</button>
+<script>
+'use strict';
+(function(){
+  document.documentElement.classList.add('js');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Каталог: поиск и фильтр */
+  const search=document.getElementById('search'), instrument=document.getElementById('instrument');
+  const cards=[...document.querySelectorAll('#catalog .card')];
+  const norm=s=>s.toLocaleLowerCase().replaceAll('ё','е').trim();
+  const countEl=document.getElementById('count');
+  const extraFilters=[...document.querySelectorAll('[data-catalog-filter]')];
+  function filterCatalog(){
+    const q=norm(search.value); let n=0;
+    for(const c of cards){const ok=norm(c.textContent).includes(q)&&(instrument.value==='all'||c.dataset.instrument===instrument.value)&&extraFilters.every(f=>f.value==='all'||c.dataset[f.dataset.catalogFilter]===f.value);c.hidden=!ok;if(ok)n++}
+    countEl.textContent=(countEl.dataset.tpl||'Показано: {n} из {t}').replace('{n}',n).replace('{t}',cards.length);
+    document.getElementById('empty').hidden=n!==0;
+  }
+  if(search&&instrument){search.addEventListener('input',filterCatalog); instrument.addEventListener('change',filterCatalog); extraFilters.forEach(f=>f.addEventListener('change',filterCatalog)); filterCatalog();}
+
+
+  /* Шапка, кнопка «наверх», активный пункт меню */
+  const bar=document.getElementById('top-bar'), totop=document.getElementById('totop');
+  const onScroll=()=>{const y=scrollY;bar.classList.toggle('scrolled',y>(bar.classList.contains('home')?innerHeight*.6:10));totop.classList.toggle('show',y>700)};
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  totop.addEventListener('click',()=>{scrollTo({top:0,behavior:reduce?'auto':'smooth'});(document.querySelector('h1')||document.querySelector('.brand')).setAttribute('tabindex','-1');(document.querySelector('h1')||document.querySelector('.brand')).focus({preventScroll:true})});
+  const links=[...document.querySelectorAll('nav a')];
+  if('IntersectionObserver' in window){
+    /* Подсветка пункта меню: на многостраничной версии — текущая страница, на одностраничной — раздел в поле зрения */
+    const here=location.pathname.split('/').pop()||'index.html';
+    const pageLink=links.find(a=>a.getAttribute('href')===here);
+    if(pageLink) pageLink.classList.add('active');
+    const spy=new IntersectionObserver(es=>{for(const e of es){if(e.isIntersecting){links.forEach(a=>{const h=a.getAttribute('href');if(h.includes('#'))a.classList.toggle('active',h.endsWith('#'+e.target.id))})}}},{rootMargin:'-45% 0px -50% 0px'});
+    links.map(a=>a.getAttribute('href').split('#')[1]).filter(Boolean).forEach(id=>{const el=document.getElementById(id);if(el)spy.observe(el)});
+
+    /* Плавное появление: прячем только то, что ниже первого экрана */
+    if(!reduce){
+      const els=[...document.querySelectorAll('.reveal')].filter(el=>el.getBoundingClientRect().top>innerHeight);
+      els.forEach(el=>el.classList.add('pre'));
+      const io=new IntersectionObserver(es=>{for(const e of es){if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}},{rootMargin:'0px 0px -8% 0px'});
+      els.forEach(el=>io.observe(el));
+    }
+  }
+
+})();
+</script>
+</body>
+</html>
